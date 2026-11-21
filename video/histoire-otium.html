@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>OTIUM — histoire vidéo</title>
+<style>
+@font-face{font-family:IT;src:url(../site/public/assets/fonts/inter-tight-latin.woff2);font-weight:100 900}
+@font-face{font-family:IN;src:url(../site/public/assets/fonts/inter-latin.woff2);font-weight:100 900}
+html,body{margin:0;background:#000}canvas{display:block;width:1080px;height:1920px}
+</style></head><body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+/* Vidéo verticale 1080×1920, 32 s. render(t) dessine l'image à l'instant t (secondes). */
+const cv = document.getElementById('c'), x = cv.getContext('2d');
+const W = 1080, H = 1920, DUR = 32;
+const C = { abyss:'#020B16', deep:'#04233F', sea:'#075A78', lagoon:'#0B8C99', text:'#F2FAFF', text2:'#A9C3D4', acc:'#3BE3C8', spark:'#FFD27A', warm:'#F7E3C6', brick:'#C9734A', wood:'#8A5A3B', grey:'#5C6B78', red:'#FF8A7A' };
+const clamp = (v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease = v => { v = clamp(v); return v<.5 ? 4*v*v*v : 1-Math.pow(-2*v+2,3)/2; };
+const prog = (t,a,b) => ease((t-a)/(b-a));
+const win = (t,a,b,f=.45) => Math.min(prog(t,a,a+f), 1-prog(t,b-f,b)); // apparition puis disparition
+const rr = (X,Y,w,h,r) => { x.beginPath(); x.roundRect(X,Y,w,h,r); };
+const font = (w,s,f='IN') => x.font = `${w} ${s}px ${f}`;
+function txt(s,X,Y,{size=48,w=500,f='IN',col=C.text,al='left',a=1}={}){ x.globalAlpha=a; font(w,size,f); x.fillStyle=col; x.textAlign=al; x.textBaseline='alphabetic'; x.fillText(s,X,Y); x.globalAlpha=1; }
+function wrapLines(s,maxW){ const words=s.split(' '),out=[]; let l=''; for(const wd of words){ const tst=l?l+' '+wd:wd; if(x.measureText(tst).width>maxW&&l){out.push(l);l=wd;} else l=tst; } out.push(l); return out; }
+
+/* Sous-titre façon UGC : bloc blanc, texte noir, en bas */
+function caption(s,a,y=1520){
+  if(a<=0) return; font(700,62,'IT'); const lines=wrapLines(s,880), lh=78;
+  const bw=Math.max(...lines.map(l=>x.measureText(l).width))+70, bh=lines.length*lh+44;
+  x.globalAlpha=a; x.fillStyle='rgba(255,255,255,.96)'; rr(W/2-bw/2,y-bh/2+(1-a)*30,bw,bh,26); x.fill();
+  x.fillStyle='#02121F'; x.textAlign='center';
+  lines.forEach((l,i)=>x.fillText(l,W/2,y-bh/2+(1-a)*30+22+lh*(i+.78)));
+  x.globalAlpha=1;
+}
+function bg(){ const g=x.createLinearGradient(0,0,W*.4,H); g.addColorStop(0,C.abyss); g.addColorStop(.45,C.deep); g.addColorStop(.82,C.sea); g.addColorStop(1,C.lagoon); x.fillStyle=g; x.fillRect(0,0,W,H); }
+function stars(t){ for(let i=0;i<70;i++){ const sx=(i*137.5)%W, sy=(i*311.7)%900; x.globalAlpha=.15+.25*Math.abs(Math.sin(t*1.3+i)); x.fillStyle=i%5?C.text:C.spark; x.fillRect(sx,sy,3,3);} x.globalAlpha=1; }
+
+/* ---------- Le café ---------- */
+function person(X,Y,col,s=1,a=1){ x.globalAlpha=a; x.fillStyle=col; x.beginPath(); x.arc(X,Y-150*s,30*s,0,7); x.fill(); rr(X-38*s,Y-112*s,76*s,112*s,30*s); x.fill(); x.globalAlpha=1; }
+function cafe(t,crowd){
+  const X=110,Y=520,w=860,h=760;
+  x.fillStyle='#14324D'; rr(X,Y,w,h,28); x.fill();               // façade
+  x.fillStyle=C.warm; rr(X+40,Y+40,w-80,90,16); x.fill();        // enseigne
+  txt('LE PETIT COMPTOIR',W/2,Y+102,{size:46,w:700,f:'IT',col:'#3B2418',al:'center'});
+  for(let i=0;i<10;i++){ x.fillStyle=i%2?C.text:C.acc; x.beginPath(); x.moveTo(X+20+i*82,Y+150); x.lineTo(X+102+i*82,Y+150); x.lineTo(X+102+i*82,Y+215); x.quadraticCurveTo(X+61+i*82,Y+250,X+20+i*82,Y+215); x.closePath(); x.fill(); } // store
+  // vitrine
+  const lit=crowd; const gw=x.createLinearGradient(0,Y+260,0,Y+700); gw.addColorStop(0,lit>0.3?'#FFE7B8':'#203B52'); gw.addColorStop(1,lit>0.3?'#F4C98A':'#16304A');
+  x.fillStyle=gw; rr(X+50,Y+270,520,430,14); x.fill();
+  // tables
+  for(let i=0;i<3;i++){ x.fillStyle=C.wood; rr(X+100+i*160,Y+560,110,18,6); x.fill(); x.fillRect(X+150+i*160,Y+578,10,80); }
+  // clients qui arrivent
+  const cols=['#2C5E7A','#7A3E5C','#3E7A55','#7A6A3E','#4E3E7A','#7A4E3E'];
+  for(let i=0;i<6;i++){ const show=clamp(crowd*6-i); if(show>0) person(X+125+i*80,Y+690,cols[i],.78,show); }
+  // porte
+  x.fillStyle='#0B2236'; rr(X+620,Y+300,190,400,14); x.fill(); x.fillStyle=C.spark; x.beginPath(); x.arc(X+785,Y+510,9,0,7); x.fill();
+  // pancarte
+  const open = crowd>0.2;
+  x.fillStyle=open?C.acc:C.grey; rr(X+655,Y+340,120,56,10); x.fill();
+  txt(open?'OUVERT':'OUVERT',X+715,Y+378,{size:26,w:700,col:open?'#02121F':'#C7D2DB',al:'center'});
+  // sol
+  x.fillStyle='#0A1C2E'; x.fillRect(60,Y+h,W-120,26);
+}
+/* ---------- Téléphone ---------- */
+function phone(X,Y,s,draw){
+  x.save(); x.translate(X,Y); x.scale(s,s);
+  x.fillStyle='#0A0F16'; rr(-230,-460,460,920,64); x.fill();
+  x.strokeStyle='#2A4C66'; x.lineWidth=6; rr(-230,-460,460,920,64); x.stroke();
+  x.save(); rr(-205,-430,410,860,46); x.clip(); x.fillStyle='#F4F7FA'; x.fillRect(-205,-430,410,860); draw(); x.restore();
+  x.fillStyle='#0A0F16'; rr(-60,-445,120,30,15); x.fill();
+  x.restore();
+}
+function scrGoogle(found){
+  rr(-180,-400,360,64,32); x.fillStyle='#fff'; x.fill(); x.strokeStyle='#D5DCE3'; x.lineWidth=3; x.stroke();
+  txt('café près de moi',-140,-357,{size:28,w:500,col:'#33414D'});
+  const names = found ? ['Le Petit Comptoir','Café du Port','Le Kiosque'] : ['Café du Port','Le Kiosque','Brûlerie Centrale'];
+  names.forEach((n,i)=>{ const yy=-290+i*170, me=found&&i===0;
+    x.fillStyle=me?'#E7FBF7':'#fff'; rr(-185,yy,370,150,18); x.fill(); x.strokeStyle=me?C.acc:'#E1E6EB'; x.lineWidth=me?5:2; x.stroke();
+    txt(n,-160,yy+50,{size:28,w:700,col:'#12202C'});
+    txt('★★★★★',-160,yy+92,{size:24,w:400,col:'#E2A400'}); txt(me?'4,8 · Ouvert':'4,2',-20,yy+92,{size:22,col:'#5B6976'});
+    txt(me?'Site · Itinéraire · Appeler':'Itinéraire',-160,yy+128,{size:21,col:me?'#0B7F6E':'#5B6976'}); });
+  if(!found){ txt('Le Petit Comptoir ?',0,280,{size:30,w:700,col:'#B23A2B',al:'center'}); txt('introuvable',0,320,{size:28,col:'#B23A2B',al:'center'}); }
+}
+function scrSite(){
+  const g=x.createLinearGradient(0,-430,0,-120); g.addColorStop(0,'#3B2418'); g.addColorStop(1,'#8A5A3B'); x.fillStyle=g; x.fillRect(-205,-430,410,310);
+  txt('Le Petit Comptoir',-175,-250,{size:36,w:700,f:'IT',col:'#FFF4E2'}); txt('Café · pâtisseries maison',-175,-210,{size:22,col:'#F4D9B8'});
+  x.fillStyle=C.acc; rr(-175,-90,350,70,35); x.fill(); txt('Appeler',0,-43,{size:28,w:700,col:'#02121F',al:'center'});
+  x.fillStyle='#25D366'; rr(-175,0,350,70,35); x.fill(); txt('Réserver sur WhatsApp',0,47,{size:26,w:700,col:'#fff',al:'center'});
+  txt('Horaires',-175,140,{size:26,w:700,col:'#12202C'}); txt('Lun–Sam · 7 h – 19 h',-175,178,{size:24,col:'#5B6976'});
+  txt('La carte',-175,240,{size:26,w:700,col:'#12202C'}); for(let i=0;i<3;i++){ x.fillStyle='#E4EAF0'; rr(-175+i*120,265,105,105,14); x.fill(); }
+}
+function scrGBP(){
+  x.fillStyle='#DDE6EE'; x.fillRect(-205,-430,410,230); x.fillStyle=C.brick; x.beginPath(); x.arc(0,-320,26,0,7); x.fill(); x.fillStyle='#fff'; x.beginPath(); x.arc(0,-322,10,0,7); x.fill();
+  txt('Le Petit Comptoir',-175,-140,{size:34,w:700,f:'IT',col:'#12202C'});
+  txt('4,8',-175,-95,{size:28,w:700,col:'#12202C'}); txt('★★★★★',-125,-95,{size:28,col:'#E2A400'}); txt('Café',85,-95,{size:24,col:'#5B6976'});
+  ['Itinéraire','Appeler','Site web'].forEach((b,i)=>{ x.strokeStyle='#0B7F6E'; x.lineWidth=3; rr(-175+i*120,-60,110,54,27); x.stroke(); txt(b,-120+i*120,-24,{size:19,w:600,col:'#0B7F6E',al:'center'}); });
+  for(let i=0;i<3;i++){ const yy=40+i*120; x.fillStyle='#fff'; rr(-185,yy,370,104,16); x.fill(); x.fillStyle='#C9D5DF'; x.beginPath(); x.arc(-145,yy+38,22,0,7); x.fill(); txt('★★★★★',-110,yy+46,{size:22,col:'#E2A400'}); x.fillStyle='#E4EAF0'; rr(-160,yy+66,300,14,7); x.fill(); }
+}
+function scrChat(t){
+  x.fillStyle='#ECE5DD'; x.fillRect(-205,-430,410,860); x.fillStyle='#075E54'; x.fillRect(-205,-430,410,110);
+  txt('Le Petit Comptoir',-150,-360,{size:28,w:700,col:'#fff'});
+  const b=(s,me,y,a)=>{ if(a<=0) return; font(500,24,'IN'); const lines=wrapLines(s,260); const bh=lines.length*34+28; x.globalAlpha=a; x.fillStyle=me?'#DCF8C6':'#fff'; rr(me?-10:-185,y,195,0,0); rr(me?185-280:-185,y,280,bh,16); x.fill(); x.fillStyle='#12202C'; x.textAlign='left'; lines.forEach((l,i)=>x.fillText(l,(me?185-280:-185)+16,y+40+i*34)); x.globalAlpha=1; };
+  b('Bonjour ! Une table pour 4 demain midi ?',true,-280,prog(t,19.3,19.7));
+  b('Avec plaisir, c\'est réservé pour 12 h !',false,-130,prog(t,20.2,20.6));
+  b('Merci, à demain !',true,30,prog(t,20.9,21.3));
+}
+function plaque(X,Y,s,t){
+  x.save(); x.translate(X,Y); x.rotate(-.08); x.scale(s,s);
+  x.fillStyle='#F2FAFF'; rr(-150,-200,300,400,30); x.fill();
+  // QR stylisé
+  x.fillStyle='#02121F'; for(let i=0;i<9;i++)for(let j=0;j<9;j++){ if(((i*7+j*13+i*j)%3)===0||(i<3&&j<3)||(i>5&&j<3)||(i<3&&j>5)) x.fillRect(-90+i*20,-150+j*20,18,18); }
+  txt('OTIUM',0,110,{size:30,w:700,f:'IT',col:'#02121F',al:'center'}); txt('Approchez votre téléphone',0,150,{size:20,col:'#4A6577',al:'center'});
+  x.restore();
+  for(let k=0;k<3;k++){ const r=((t*1.2+k/3)%1); x.globalAlpha=(1-r)*.8; x.strokeStyle=C.acc; x.lineWidth=6; x.beginPath(); x.arc(X,Y-40,60+r*170,0,7); x.stroke(); } x.globalAlpha=1;
+}
+function logo(X,Y,s){
+  x.save(); x.translate(X,Y); x.scale(s,s); x.lineCap='round'; x.lineWidth=2.4; x.strokeStyle=C.acc;
+  x.translate(-32,-32);
+  x.stroke(new Path2D('M12.9 45.7C4.6 47.5 1.5 46.2 4.8 41.8c3-4.3 12.2-11.3 23.9-17.4 15-7.9 28.4-11.6 30.6-8.1 1.2 1.9-1.2 5.3-6.3 9.5'));
+  x.lineWidth=3.2; x.strokeStyle=C.text; x.beginPath(); x.arc(32,32,17.5,0,7); x.stroke();
+  x.lineWidth=3.4; x.strokeStyle=C.acc; x.stroke(new Path2D('M59.1 16.7c2.3 4.4-9.9 15.4-25.8 22.9C19 46.3 7.6 49.1 4.2 46.8'));
+  x.restore();
+}
+function step(n,label,a){ if(a<=0) return; x.globalAlpha=a; x.fillStyle=C.acc; x.beginPath(); x.arc(150,330,46,0,7); x.fill(); txt(String(n),150,350,{size:52,w:700,f:'IT',col:'#02121F',al:'center'}); font(600,50,'IT'); x.globalAlpha=a; const ls=wrapLines(label,760); ls.forEach((l,i)=>txt(l,225,320+i*62,{size:50,w:600,f:'IT',a})); x.globalAlpha=1; }
+
+function render(t){
+  bg(); stars(t);
+  /* Scène 1-2 : le café vide + Google */
+  if(t<10.2){
+    const a=win(t,0,10.2,.5);
+    x.globalAlpha=a; cafe(t,0); x.globalAlpha=1;
+    // nuage de poussière / horloge
+    if(t>4.4){ const p=prog(t,4.4,5); x.globalAlpha=p*a; x.strokeStyle=C.text2; x.lineWidth=8; x.beginPath(); x.arc(850,420,60,0,7); x.stroke(); x.save(); x.translate(850,420); x.rotate(t*3); x.beginPath(); x.moveTo(0,0); x.lineTo(0,-42); x.stroke(); x.restore(); x.globalAlpha=1; }
+    txt('Voici Karim et son café.',W/2,230,{size:66,w:600,f:'IT',al:'center',a:win(t,.3,4.8)});
+    caption('Ses pâtisseries sont délicieuses…',win(t,.6,3.6));
+    caption('…mais presque personne ne pousse la porte.',win(t,3.6,6.6));
+    if(t>6.2){ const p=prog(t,6.2,7); phone(W/2,980+(1-p)*900,1.08,()=>scrGoogle(false)); }
+    caption('Sur Google, son café n\'existe pas.',win(t,7,10.2),1640);
+  }
+  /* Scène 3 : OTIUM arrive */
+  if(t>=10 && t<23){
+    const a=win(t,10,23,.5);
+    if(t<11.6){ const p=prog(t,10,10.8); x.globalAlpha=Math.min(p,1-prog(t,11.2,11.6)); logo(W/2,800,6*p+2); txt('Karim appelle OTIUM.',W/2,1150,{size:68,w:600,f:'IT',al:'center',a:x.globalAlpha}); x.globalAlpha=1; }
+    if(t>=11.4 && t<14.6){ const p=win(t,11.4,14.6); step(1,'Un site clair, fait pour le téléphone',p); x.globalAlpha=p; phone(W/2,1020,1.2,scrSite); x.globalAlpha=1; }
+    if(t>=14.4 && t<17.6){ const p=win(t,14.4,17.6); step(2,'Sa fiche Google, avec ses avis',p); x.globalAlpha=p; phone(W/2,1020,1.2,scrGBP); x.globalAlpha=1; }
+    if(t>=17.4 && t<19.2){ const p=win(t,17.4,19.2); step(3,'Une plaque NFC sur le comptoir',p); x.globalAlpha=p; plaque(W/2-120,1040,1.5,t); phone(W/2+230,1150-Math.sin(t*4)*20,.62,scrSite); x.globalAlpha=1; }
+    if(t>=19 && t<23){ const p=win(t,19,23); step(4,'Ses clients réservent sur WhatsApp',p); x.globalAlpha=p; phone(W/2,1020,1.2,()=>scrChat(t)); x.globalAlpha=1; }
+    caption('Un clic pour appeler, réserver ou venir.',win(t,12,14.4),1700);
+    caption('Les clients le trouvent… et lui font confiance.',win(t,15,17.4),1700);
+  }
+  /* Scène 4 : le café se remplit */
+  if(t>=22.6 && t<28.6){
+    const a=win(t,22.6,28.6,.5);
+    x.globalAlpha=a; cafe(t,prog(t,23.4,26.6)); x.globalAlpha=1;
+    txt('Quelques semaines plus tard…',W/2,230,{size:62,w:600,f:'IT',al:'center',a:win(t,22.8,26)});
+    if(t>25.4){ const p=prog(t,25.4,26.2); phone(860,1010+(1-p)*80,.55,()=>scrGoogle(true)); }
+    caption('On le trouve. On l\'appelle. On vient.',win(t,24,28.4));
+  }
+  /* Scène 5 : appel à l'action */
+  if(t>=28.4){
+    const p=prog(t,28.4,29.2);
+    x.globalAlpha=p; logo(W/2,560,5);
+    txt('OTIUM',W/2,800,{size:84,w:600,f:'IT',al:'center',a:p});
+    txt('Votre commerce mérite',W/2,1000,{size:66,w:500,f:'IT',al:'center',a:p});
+    txt('d\'être trouvé.',W/2,1080,{size:66,w:500,f:'IT',col:C.acc,al:'center',a:p});
+    txt('Site internet dès 499 €, payé une fois',W/2,1210,{size:44,w:500,col:C.text2,al:'center',a:p});
+    const q=prog(t,29.2,29.8); x.globalAlpha=q; x.fillStyle=C.acc; rr(W/2-300,1320,600,120,60); x.fill(); txt('otiumdigital.com',W/2,1398,{size:48,w:700,col:'#02121F',al:'center',a:q});
+    x.globalAlpha=1;
+  }
+  txt('Histoire illustrative',W-40,H-40,{size:26,w:500,col:'rgba(242,250,255,.55)',al:'right'});
+}
+window.render = render; window.DUR = DUR;
+Promise.all(['600 50px IT','700 50px IT','500 50px IN','700 50px IN'].map(f=>document.fonts.load(f))).then(()=>document.fonts.ready).then(()=>{ window.ready = true; if(!location.search.includes('frames')){ const s=performance.now(); const loop=()=>{ render(((performance.now()-s)/1000)%DUR); requestAnimationFrame(loop); }; loop(); } });
+</script>
+</body></html>

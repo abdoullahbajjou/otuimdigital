@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="https://otiumdigital.com{{path}}">
+<meta name="robots" content="{{robots}}">
+<meta name="theme-color" content="#020B16">
+<script>document.documentElement.classList.add("js")</script>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="OTIUM">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="https://otiumdigital.com{{path}}">
+<meta property="og:image" content="https://otiumdigital.com/assets/og-otium.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v={{v}}">
+{{jsonld}}
+<script defer src="/assets/site.js?v={{v}}"></script>
+</head>
+<body class="{{bodyclass}}">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="OTIUM, accueil">{{logo}}OTIUM</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/#prix">Prix</a>
+      <a href="/#comment">Comment ça marche</a>
+      <a href="/exemples"{{cur:exemples}}>Exemples<span class="soon">Bientôt</span></a>
+      <a href="/#questions">Questions</a>
+    </nav>
+    <a class="btn sm" href="/contact">Je veux mon site</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="menu-close" type="button" aria-label="Fermer le menu">×</button>
+  <a href="/">Accueil</a>
+  <a href="/#prix">Prix</a>
+  <a href="/#comment">Comment ça marche</a>
+  <a href="/#questions">Questions</a>
+  <a href="/exemples">Exemples <span class="soon">Bientôt</span></a>
+  <a href="/a-propos">À propos <span class="soon">Bientôt</span></a>
+  <a class="btn" href="/contact">Je veux mon site</a>
+</div>
+
+<main id="contenu">
+{{body}}
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="logo" href="/">{{logo}}OTIUM</a>
+        <p style="margin-top:14px;max-width:22rem">Des sites internet pour les commerces et les indépendants. Créés sur mesure, payés une seule fois.</p>
+      </div>
+      <div><h4>Nos formules</h4><ul><li><a href="/#prix">Vitrine — 499 €</a></li><li><a href="/#prix">Site complet — 700 €</a></li><li><a href="/#prix">E-commerce — 1 200 €</a></li></ul></div>
+      <div><h4>Découvrir</h4><ul><li><a href="/#comment">Comment ça marche</a></li><li><a href="/#questions">Questions fréquentes</a></li><li><a href="/exemples">Exemples (bientôt)</a></li><li><a href="/a-propos">À propos (bientôt)</a></li></ul></div>
+      <div><h4>Nous parler</h4><ul><li><a href="/contact">Formulaire de contact</a></li><li><a href="mailto:contact@otiumdigital.com">contact@otiumdigital.com</a></li><li><a href="https://wa.me/41779238903" rel="noopener">WhatsApp</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© <span data-year>2026</span> Otium Corporation · TVA non applicable, art. 293 B du CGI</span><span><a href="/mentions-legales">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a></span></div>
+  </div>
+</footer>
+
+{{mbar}}
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTIUM — maquettes couleurs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+/* ---------- 3 thèmes ---------- */
+.t-blanc  { --bg:#FFFFFF; --bg2:#F5F4F8; --hero:#FFFFFF; --text:#0B0B10; --text2:#55566A; --line:#E6E5EE;
+            --accent:#6B47FF; --accent-h:#5532F0; --on-accent:#FFFFFF; --spark:#E0950F; --card:#FFFFFF; --chip:#F1EEFF; --chip-t:#4A2FD1;
+            --p1:#6B47FF; --p2:#E0950F; --p3:#1BA38A; --p4:#0B0B10; }
+.t-ocean  { --bg:#03101D; --bg2:#06213A; --hero:linear-gradient(160deg,#020B16 0%,#04233F 45%,#075A78 80%,#0B8C99 100%);
+            --text:#F2FAFF; --text2:#A9C3D4; --line:#ffffff1f; --accent:#3BE3C8; --accent-h:#62F0DA; --on-accent:#02121F; --spark:#FFD27A;
+            --card:#071C31; --chip:#ffffff12; --chip-t:#BFF6EC; --p1:#3BE3C8; --p2:#5AB8FF; --p3:#FFD27A; --p4:#F2FAFF; }
+.t-chaud  { --bg:#FFF8F1; --bg2:#FCEBDC; --hero:linear-gradient(170deg,#FFF8F1 0%,#FFE9D6 60%,#FFD7BA 100%);
+            --text:#1F140D; --text2:#6B5649; --line:#F0DCCB; --accent:#E8541F; --accent-h:#C9410F; --on-accent:#FFFFFF; --spark:#B5361A;
+            --card:#FFFFFF; --chip:#FFE4D2; --chip-t:#9A3412; --p1:#E8541F; --p2:#F2A33A; --p3:#B5361A; --p4:#1F140D; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.frame{background:var(--hero);color:var(--text);min-height:100vh;position:relative;overflow:hidden}
+.frame .after{background:var(--bg2)}
+nav{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:28px;padding:22px 28px;font-size:15px}
+.logo{display:flex;align-items:center;gap:10px;font:600 20px/1 "Inter Tight";letter-spacing:.14em}
+.logo svg{width:34px;height:34px}
+nav .links{display:flex;gap:26px;margin-left:auto;color:var(--text2)}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:15px 26px;font:600 16px/1 Inter;background:var(--accent);color:var(--on-accent);text-decoration:none;white-space:nowrap}
+.btn.sm{padding:11px 18px;font-size:14px}
+.link{color:var(--text);font-weight:600;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+.hero{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:56px 28px 40px}
+.kicker{display:inline-block;font:600 13px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--chip-t);background:var(--chip);padding:9px 14px;border-radius:999px;margin-bottom:22px}
+h1{font:500 clamp(44px,5.4vw,76px)/1.02 "Inter Tight";letter-spacing:-.035em;margin-bottom:22px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.t-blanc h1 em,.t-chaud h1 em{color:var(--accent)}
+.sub{font-size:20px;line-height:1.5;color:var(--text2);max-width:34rem;margin-bottom:28px}
+.sub b{color:var(--text);font-weight:600}
+.ctas{display:flex;align-items:center;gap:22px;margin-bottom:30px;flex-wrap:wrap}
+.proofs{display:flex;gap:10px;flex-wrap:wrap}
+.proof{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:14px;font-weight:500;background:color-mix(in srgb,var(--card) 70%,transparent)}
+.proof i{width:8px;height:8px;border-radius:50%;background:var(--spark)}
+canvas{width:100%;aspect-ratio:1;display:block}
+.prices{max-width:1240px;margin:0 auto;padding:24px 28px 64px}
+.prices h2{font:500 34px/1.1 "Inter Tight";letter-spacing:-.025em;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px}
+.card.hot{border:2px solid var(--accent)}
+.card small{display:block;color:var(--text2);font-size:14px;margin-bottom:6px}
+.card h3{font:600 21px/1.2 "Inter Tight";margin-bottom:10px}
+.card .price{font:500 44px/1 "Inter Tight";letter-spacing:-.03em;margin-bottom:14px}
+.card .price span{font-size:18px;color:var(--text2);letter-spacing:0;margin-left:4px}
+.card ul{list-style:none;display:grid;gap:8px;font-size:15px;color:var(--text2);margin-bottom:18px}
+.card li::before{content:"✓";color:var(--accent);font-weight:700;margin-right:8px}
+.badge{float:right;font-size:12px;font-weight:600;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:5px 10px}
+.label{position:absolute;top:14px;right:16px;font:600 12px/1 Inter;letter-spacing:.06em;text-transform:uppercase;background:#000;color:#fff;padding:7px 10px;border-radius:6px;z-index:5}
+@media (max-width:760px){
+  nav .links{display:none}
+  nav{gap:12px;padding:16px 18px}
+  .hero{grid-template-columns:1fr;padding:18px 18px 10px;gap:4px}
+  .visual{order:-1;max-width:280px;margin:0 auto}
+  h1{font-size:40px}
+  .sub{font-size:18px}
+  .ctas .btn{width:100%;justify-content:center}
+  .grid{grid-template-columns:1fr}
+  .prices{padding:16px 18px 40px}
+  .proof{font-size:13px}
+}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<template id="tpl">
+  <section class="frame">
+    <span class="label"></span>
+    <nav>
+      <span class="logo"><svg viewBox="0 0 64 64" fill="none" stroke-linecap="round"><path d="M12.9 40.7C4.6 42.5 1.5 41.2 4.8 36.8c3-4.3 12.2-11.3 23.9-17.4 15-7.9 28.4-11.6 30.6-8.1 1.2 1.9-1.2 5.3-6.3 9.5" stroke="var(--accent)" stroke-width="2.4" transform="translate(0 5)"/><circle cx="32" cy="32" r="17.5" stroke="var(--text)" stroke-width="3.2"/><path d="M59.1 16.7c2.3 4.4-9.9 15.4-25.8 22.9C19 46.3 7.6 49.1 4.2 46.8" stroke="var(--accent)" stroke-width="3.4"/></svg>OTIUM</span>
+      <span class="links"><span>Prix</span><span>Comment ça marche</span><span>Exemples</span><span>Questions</span></span>
+      <a class="btn sm">Je veux mon site</a>
+    </nav>
+    <div class="hero">
+      <div>
+        <span class="kicker">Sites internet pour commerces et indépendants</span>
+        <h1>Votre commerce mérite d'être <em>trouvé</em> sur Google.</h1>
+        <p class="sub">On crée votre site internet <b>de A à Z</b>, on vous accompagne à chaque étape, et vous payez <b>une seule fois</b>. À partir de 499 €.</p>
+        <div class="ctas"><a class="btn">Je veux mon site →</a><a class="link">Voir les prix</a></div>
+        <div class="proofs"><span class="proof"><i></i>Dès 499 €, payé une fois</span><span class="proof"><i></i>Prêt en 2 à 6 semaines</span><span class="proof"><i></i>Le site est à vous</span></div>
+      </div>
+      <div class="visual"><canvas width="900" height="900"></canvas></div>
+    </div>
+    <div class="after"><div class="prices">
+      <h2>Trois formules. Un prix clair.</h2>
+      <div class="grid">
+        <article class="card"><small>Pour être présent</small><h3>Vitrine</h3><div class="price">499<span>€</span></div><ul><li>Jusqu'à 5 pages</li><li>Bouton WhatsApp et appel</li><li>Plaque NFC + QR code</li></ul><a class="link">Choisir</a></article>
+        <article class="card hot"><span class="badge">Le plus choisi</span><small>Pour attirer des clients</small><h3>Site complet</h3><div class="price">700<span>€</span></div><ul><li>Jusqu'à 10 pages, 3 langues</li><li>Prise de rendez-vous</li><li>Plaque NFC + QR code</li></ul><a class="btn sm">Choisir</a></article>
+        <article class="card"><small>Pour vendre en ligne</small><h3>E-commerce</h3><div class="price">1 200<span>€</span></div><ul><li>Jusqu'à 40 produits</li><li>Paiement sécurisé</li><li>Commandes et livraisons</li></ul><a class="link">Choisir</a></article>
+      </div>
+    </div></div>
+  </section>
+</template>
+<script>
+const themes={blanc:['t-blanc','1 · Blanc + violet'],ocean:['t-ocean','2 · Bleu océan'],chaud:['t-chaud','3 · Chaud terracotta']};
+const q=new URLSearchParams(location.search).get('v');
+const list=q?[q]:Object.keys(themes);
+const app=document.getElementById('app'),tpl=document.getElementById('tpl');
+list.forEach(k=>{const n=tpl.content.cloneNode(true);const f=n.querySelector('.frame');f.classList.add(themes[k][0]);n.querySelector('.label').textContent=themes[k][1];app.appendChild(n);});
+/* ---------- constellation planète + anneau ---------- */
+document.querySelectorAll('.frame').forEach(frame=>{
+  const cv=frame.querySelector('canvas'),cx=cv.getContext('2d'),cs=getComputedStyle(frame);
+  const cols=['--p1','--p2','--p3','--p4'].map(v=>cs.getPropertyValue(v).trim());
+  let seed=7;const r=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const W=900,C=450,R=200,pts=[];
+  for(let i=0;i<900;i++){const a=r()*Math.PI*2,d=Math.sqrt(r())*R;const fill=d/R;pts.push({k:'p',x:Math.cos(a)*d,y:Math.sin(a)*d,s:1.6+r()*2.4,c:cols[(r()*(fill>.85?2:4))|0],o:.35+r()*.65,t:r()*6})}
+  for(let i=0;i<520;i++){pts.push({k:'r',a:r()*Math.PI*2,rad:R*(1.45+r()*.42),s:1.2+r()*2.2,c:cols[(r()*2)|0],o:.4+r()*.6})}
+  for(let i=0;i<120;i++){pts.push({k:'f',x:(r()-.5)*W,y:(r()-.5)*W,s:1+r()*1.6,c:cols[(r()*3)|0],o:.15+r()*.3})}
+  const tri=(x,y,s,rot)=>{cx.beginPath();for(let j=0;j<3;j++){const a=rot+j*2.094;cx.lineTo(x+Math.cos(a)*s,y+Math.sin(a)*s)}cx.closePath();cx.stroke()};
+  const tilt=-0.42,flat=0.28;
+  function draw(t){
+    cx.clearRect(0,0,W,W);cx.lineWidth=1.4;
+    const back=[],front=[];
+    pts.forEach(p=>{if(p.k!=='r')return;const a=p.a+t*0.00012;const x=Math.cos(a)*p.rad,y=Math.sin(a)*p.rad*flat;const X=x*Math.cos(tilt)-y*Math.sin(tilt),Y=x*Math.sin(tilt)+y*Math.cos(tilt);(Math.sin(a)<0?back:front).push([X,Y,p])});
+    const plot=([x,y,p],rot)=>{cx.strokeStyle=p.c;cx.globalAlpha=p.o;tri(C+x,C+y,p.s,rot)};
+    back.forEach(e=>plot(e,t*.001));
+    pts.forEach(p=>{if(p.k==='p'){cx.strokeStyle=p.c;cx.globalAlpha=p.o*(.75+.25*Math.sin(t*.0015+p.t));tri(C+p.x,C+p.y,p.s,p.t+t*.0004)}else if(p.k==='f'){cx.strokeStyle=p.c;cx.globalAlpha=p.o;tri(C+p.x,C+p.y,p.s,p.x)}});
+    front.forEach(e=>plot(e,t*.001));
+    cx.globalAlpha=1;
+  }
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loop=t=>{draw(t);if(!reduce)requestAnimationFrame(loop)};requestAnimationFrame(loop);draw(1000);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  // OTIUM — Worker + site statique. NE PAS déployer sans le feu vert d'Abdoullah.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "otium",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-10",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": true
+  },
+  "vars": { "MAIL_FROM": "OTIUM <site@otiumdigital.com>" },
+  "routes": [
+    { "pattern": "otiumdigital.com", "custom_domain": true },
+    { "pattern": "www.otiumdigital.com", "custom_domain": true }
+  ]
+}

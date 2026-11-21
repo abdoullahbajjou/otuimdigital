@@ -1,0 +1,3 @@
+Inter et Inter Tight — SIL Open Font License 1.1 (OFL).
+https://openfontlicense.org — Copyright The Inter Project Authors (https://github.com/rsms/inter).
+Sous-ensemble latin variable, servi depuis Google Fonts puis auto-hébergé.

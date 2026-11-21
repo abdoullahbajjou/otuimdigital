@@ -1,0 +1,133 @@
+<!--{
+"title":"Contact — Demandez votre site internet | OTIUM",
+"description":"Décrivez votre activité en deux minutes. Nous vous recontactons sous 24 h ouvrées, gratuitement et sans engagement. Par formulaire, e-mail ou WhatsApp.",
+"path":"/contact",
+"nombar":true,
+"jsonld":[{"@context":"https://schema.org","@type":"ContactPage","name":"Contacter OTIUM","url":"https://otiumdigital.com/contact"}]
+}-->
+<section class="page" aria-labelledby="h-contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Contact</span>
+      <h1 id="h-contact">Parlons de votre projet.</h1>
+      <p class="lead" style="margin-bottom:0">Deux minutes suffisent. Nous vous recontactons sous 24 h ouvrées, <b>gratuitement et sans engagement</b>.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="panel">
+        <div class="tabs" role="tablist" aria-label="Type de demande">
+          <button type="button" role="tab" id="tab-projet" aria-controls="pane-projet" aria-selected="true">Je veux un site</button>
+          <button type="button" role="tab" id="tab-question" aria-controls="pane-question" aria-selected="false" tabindex="-1">J'ai une question</button>
+        </div>
+
+        <!-- Parcours A : projet -->
+        <form id="pane-projet" role="tabpanel" aria-labelledby="tab-projet" class="otium-form" data-kind="projet" novalidate>
+          <div class="field">
+            <label for="p-nom">Nom de votre entreprise, ou vos nom et prénom</label>
+            <input id="p-nom" name="nom" type="text" autocomplete="organization" maxlength="100" required>
+            <p class="err" id="p-nom-err"></p>
+          </div>
+          <div class="field">
+            <label for="p-email">Votre e-mail</label>
+            <input id="p-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required>
+            <p class="err" id="p-email-err"></p>
+          </div>
+          <div class="field">
+            <label for="p-tel">Téléphone ou WhatsApp <span class="hint">(facultatif)</span></label>
+            <input id="p-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+          </div>
+          <div class="field">
+            <label for="p-site">Votre site actuel, si vous en avez un <span class="hint">(facultatif)</span></label>
+            <input id="p-site" name="site_actuel" type="url" inputmode="url" autocomplete="url" maxlength="200" placeholder="www.votre-commerce.com">
+          </div>
+          <fieldset>
+            <legend>Quelle formule vous intéresse ?</legend>
+            <div class="opts plans-opt" id="p-formule">
+              <label class="opt"><input type="radio" name="formule" value="Vitrine (499 €)" data-key="vitrine"><span>Vitrine<small>499 € · être présent</small></span></label>
+              <label class="opt"><input type="radio" name="formule" value="Site complet (700 €)" data-key="complet"><span>Site complet<small>700 € · attirer des clients</small></span></label>
+              <label class="opt"><input type="radio" name="formule" value="E-commerce (1 200 €)" data-key="ecommerce"><span>E-commerce<small>1 200 € · vendre en ligne</small></span></label>
+              <label class="opt"><input type="radio" name="formule" value="Je ne sais pas encore" data-key="aide"><span>Je ne sais pas encore<small>On vous conseille</small></span></label>
+              <label class="opt"><input type="radio" name="formule" value="Refonte de mon site actuel" data-key="refonte"><span>Refaire mon site actuel<small>Diagnostic gratuit</small></span></label>
+            </div>
+            <p class="err" id="p-formule-err"></p>
+          </fieldset>
+          <fieldset>
+            <legend>Quelle est votre activité ?</legend>
+            <div class="opts chips" id="p-activite">
+              <label class="opt"><input type="radio" name="activite" value="Restaurant / café" data-key="restaurant"><span>Restaurant / café</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Institut de beauté" data-key="beaute"><span>Institut de beauté</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Chauffeur privé / VTC" data-key="chauffeur"><span>Chauffeur privé / VTC</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Librairie" data-key="librairie"><span>Librairie</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Boutique / commerce" data-key="boutique"><span>Boutique / commerce</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Artisan" data-key="artisan"><span>Artisan</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Indépendant / profession libérale" data-key="independant"><span>Indépendant</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Autre" data-key="autre"><span>Autre</span></label>
+            </div>
+            <p class="err" id="p-activite-err"></p>
+          </fieldset>
+          <div class="field" id="p-autre-wrap" hidden>
+            <label for="p-autre">Précisez votre activité</label>
+            <input id="p-autre" name="activite_autre" type="text" maxlength="80">
+            <p class="err" id="p-autre-err"></p>
+          </div>
+          <div class="field">
+            <label for="p-msg">Un mot sur votre projet <span class="hint">(facultatif)</span></label>
+            <textarea id="p-msg" name="message" maxlength="3000" placeholder="Ex. : j'ai un salon de coiffure, je voudrais que mes clientes puissent réserver en ligne."></textarea>
+          </div>
+          <input class="hp" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte qu'OTIUM utilise ces informations pour me répondre. <a href="/confidentialite">Confidentialité</a></span></label>
+          <p class="err" id="p-consent-err"></p>
+          <div class="form-actions">
+            <button class="btn" type="submit">Envoyer ma demande</button>
+            <a class="btn ghost" href="https://wa.me/41779238903" data-wa rel="noopener">{{i:wa}}Par WhatsApp</a>
+          </div>
+          <p class="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- Parcours B : question -->
+        <form id="pane-question" role="tabpanel" aria-labelledby="tab-question" class="otium-form" data-kind="question" novalidate hidden>
+          <div class="field">
+            <label for="q-nom">Votre nom</label>
+            <input id="q-nom" name="nom" type="text" autocomplete="name" maxlength="100" required>
+            <p class="err" id="q-nom-err"></p>
+          </div>
+          <div class="field">
+            <label for="q-email">Votre e-mail</label>
+            <input id="q-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required>
+            <p class="err" id="q-email-err"></p>
+          </div>
+          <div class="field">
+            <label for="q-msg">Votre question</label>
+            <textarea id="q-msg" name="message" maxlength="3000" required></textarea>
+            <p class="err" id="q-msg-err"></p>
+          </div>
+          <input class="hp" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte qu'OTIUM utilise ces informations pour me répondre. <a href="/confidentialite">Confidentialité</a></span></label>
+          <p class="err" id="q-consent-err"></p>
+          <div class="form-actions">
+            <button class="btn" type="submit">Envoyer ma question</button>
+            <a class="btn ghost" href="https://wa.me/41779238903" data-wa rel="noopener">{{i:wa}}Par WhatsApp</a>
+          </div>
+          <p class="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="done" id="done" hidden tabindex="-1">
+          {{i:check}}
+          <h2>Merci, c'est envoyé !</h2>
+          <p class="lead" style="margin:10px auto 24px">Nous vous répondons sous 24 h ouvrées. Pressé ? Écrivez-nous directement sur WhatsApp.</p>
+          <a class="btn ghost" href="https://wa.me/41779238903" rel="noopener">{{i:wa}}Écrire sur WhatsApp</a>
+        </div>
+      </div>
+
+      <aside class="panel aside" aria-labelledby="h-direct">
+        <h3 id="h-direct">Vous préférez en direct ?</h3>
+        <ul>
+          <li>{{i:wa}}<a href="https://wa.me/41779238903" rel="noopener">WhatsApp : +41 77 923 89 03</a></li>
+          <li>{{i:mail}}<a href="mailto:contact@otiumdigital.com">contact@otiumdigital.com</a></li>
+          <li>{{i:clock}}Réponse sous 24 h ouvrées</li>
+        </ul>
+        <p>Premier échange gratuit et sans engagement. Nous travaillons 100 % à distance, où que vous soyez.</p>
+      </aside>
+    </div>
+  </div>
+</section>
