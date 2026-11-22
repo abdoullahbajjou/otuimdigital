@@ -5,6 +5,8 @@ const TO = 'contact@otiumdigital.com';
 const FORMULES = ['Vitrine (499 €)', 'Site complet (700 €)', 'E-commerce (1 200 €)', 'Je ne sais pas encore', 'Refonte de mon site actuel'];
 const ACTIVITES = ['Restaurant / café', 'Institut de beauté', 'Chauffeur privé / VTC', 'Librairie', 'Boutique / commerce', 'Artisan', 'Indépendant / profession libérale', 'Autre'];
 const hits = new Map(); // limite simple, par instance
+// Google Search Console (méthode « fichier HTML ») — ne pas supprimer, sinon la propriété est perdue.
+const GOOGLE_VERIFICATION = ['googlef025c21d14ca37e2.html'];
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' } });
 const str = (v, max) => (typeof v === 'string' ? v.trim() : '').slice(0, max);
@@ -92,6 +94,12 @@ export default {
       try { return await contact(request, env); } catch { return json({ error: 'Erreur temporaire.' }, 500); }
     }
     if (url.pathname.startsWith('/api/')) return json({ error: 'Introuvable.' }, 404);
+    // Fichiers de vérification Google (Search Console) : servis tels quels à leur adresse exacte, sans redirection.
+    // Seuls les fichiers listés ici sont acceptés (sinon n'importe qui pourrait revendiquer le site).
+    const g = url.pathname.slice(1);
+    if (GOOGLE_VERIFICATION.includes(g)) {
+      return new Response(`google-site-verification: ${g}`, { headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=3600' } });
+    }
     let res = await env.ASSETS.fetch(request);
     res = await withRange(request, res);
     const out = new Response(res.body, res);

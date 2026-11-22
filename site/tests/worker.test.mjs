@@ -56,3 +56,12 @@ test('cache : une erreur 404 n\'est jamais mise en cache', async () => {
   const r = await worker.fetch(new Request('https://otiumdigital.com/assets/absent.png'), env404);
   assert.equal(r.headers.get('Cache-Control'), 'no-store');
 });
+test('Search Console : le fichier de vérification est servi tel quel, sans redirection', async () => {
+  const r = await worker.fetch(new Request('https://otiumdigital.com/googlef025c21d14ca37e2.html'), env);
+  assert.equal(r.status, 200);
+  assert.equal(await r.text(), 'google-site-verification: googlef025c21d14ca37e2.html');
+});
+test("Search Console : un autre fichier google….html n'est pas accepté", async () => {
+  const r = await worker.fetch(new Request('https://otiumdigital.com/googleabc123.html'), env);
+  assert.notEqual(await r.text(), 'google-site-verification: googleabc123.html');
+});
