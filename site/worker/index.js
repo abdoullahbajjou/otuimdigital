@@ -4,7 +4,16 @@ const ORIGINS = new Set(['https://otiumdigital.com', 'https://www.otiumdigital.c
 const TO = 'contact@otiumdigital.com';
 const FORMULES = ['Vitrine (499 €)', 'Site complet (700 €)', 'E-commerce (1 200 €)', 'Je ne sais pas encore', 'Refonte de mon site actuel'];
 const ACTIVITES = ['Restaurant / café', 'Institut de beauté', 'Chauffeur privé / VTC', 'Librairie', 'Boutique / commerce', 'Artisan', 'Indépendant / profession libérale', 'Autre'];
+import REDIRECTS from '../redirects.json' with { type: 'json' };
+
 const hits = new Map(); // limite simple, par instance
+
+export function redirectFor(path) {
+  if (path.startsWith('/_')) return null;
+  const clean = path.length > 1 ? path.replace(/\/+$/, '') : path;
+  const to = REDIRECTS[clean] ?? REDIRECTS[path];
+  return typeof to === 'string' && to.startsWith('/') && to !== clean ? to : null;
+}
 // Google Search Console (méthode « fichier HTML ») — ne pas supprimer, sinon la propriété est perdue.
 const GOOGLE_VERIFICATION = ['googlef025c21d14ca37e2.html'];
 
@@ -94,6 +103,9 @@ export default {
       try { return await contact(request, env); } catch { return json({ error: 'Erreur temporaire.' }, 500); }
     }
     if (url.pathname.startsWith('/api/')) return json({ error: 'Introuvable.' }, 404);
+    // Redirections permanentes (fichier redirects.json) : les anciennes adresses ne sont jamais perdues.
+    const to = redirectFor(url.pathname);
+    if (to) return Response.redirect(new URL(to + url.search, url).toString(), 301);
     // Fichiers de vérification Google (Search Console) : servis tels quels à leur adresse exacte, sans redirection.
     // Seuls les fichiers listés ici sont acceptés (sinon n'importe qui pourrait revendiquer le site).
     const g = url.pathname.slice(1);

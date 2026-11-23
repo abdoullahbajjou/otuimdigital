@@ -1,0 +1,6 @@
+{
+  "_lisez-moi": "Redirections permanentes (301). Si vous renommez ou supprimez une page déjà publiée, ajoutez une ligne \"ancienne adresse\": \"nouvelle adresse\". Ne supprimez jamais une ligne : Google et les anciens liens peuvent encore l'utiliser.",
+  "/paiement": "/contact",
+  "/paiement.html": "/contact",
+  "/index.html": "/"
+}

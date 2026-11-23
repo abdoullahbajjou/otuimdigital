@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { validate, buildEmail } from '../worker/index.js';
+import worker, { validate, buildEmail, redirectFor } from '../worker/index.js';
 
 const ok = { kind: 'projet', nom: 'Salon Lumière', email: 'a@b.fr', formule: 'Site complet (700 €)', activite: 'Institut de beauté', consent: true, elapsed: 9000 };
 const env = { RESEND_API_KEY: 'k', MAIL_FROM: 'OTIUM <site@otiumdigital.com>', ASSETS: { fetch: async () => new Response('<html>', { headers: { 'Content-Type': 'text/html' } }) } };
@@ -64,4 +64,12 @@ test('Search Console : le fichier de vérification est servi tel quel, sans redi
 test("Search Console : un autre fichier google….html n'est pas accepté", async () => {
   const r = await worker.fetch(new Request('https://otiumdigital.com/googleabc123.html'), env);
   assert.notEqual(await r.text(), 'google-site-verification: googleabc123.html');
+});
+test('redirections : une ancienne adresse renvoie en 301 vers la nouvelle', async () => {
+  const r = await worker.fetch(new Request('https://otiumdigital.com/paiement?x=1'), env);
+  assert.equal(r.status, 301); assert.equal(r.headers.get('Location'), 'https://otiumdigital.com/contact?x=1');
+});
+test('redirections : une page normale n\'est pas redirigée', async () => {
+  const r = await worker.fetch(new Request('https://otiumdigital.com/contact'), env);
+  assert.notEqual(r.status, 301);
 });

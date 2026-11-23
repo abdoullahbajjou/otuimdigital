@@ -23,5 +23,11 @@ Sans cette étape, le formulaire fonctionne quand même : il propose d'envoyer l
 4. L'expéditeur est défini dans `wrangler.jsonc` (`MAIL_FROM`) : `OTIUM <site@otiumdigital.com>`.
 
 ## Mise en ligne (uniquement après validation)
-`npm run deploy` : build, tests, puis `wrangler deploy` (remplace le site en ligne).
-Retour arrière possible : `npx wrangler rollback`.
+`npm run deploy` enchaîne : build → tests → contrôle avant publication (`tools/check.mjs`) → `wrangler deploy` → contrôle du site en ligne (`tools/check-live.mjs`).
+Si un contrôle échoue, la publication est bloquée (ou signalée si c'est en ligne).
+- `npm run check` : contrôle seul, sans publier.
+- `npm run check:live` : contrôle du site en ligne seul.
+- Retour arrière : `npx wrangler rollback`.
+
+## Redirections
+`redirects.json` : `"/ancienne-adresse": "/nouvelle-adresse"` (redirection 301 gérée par le Worker). À compléter dès qu'une page publiée est renommée ou supprimée. Ne jamais retirer une ligne.
