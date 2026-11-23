@@ -321,3 +321,33 @@ input:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 
   *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}
   .rv{opacity:1;transform:none}
 }
+
+/* Pages offres */
+.page.offer{min-height:0}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 22px;font-size:14px;color:var(--text3)}
+.crumbs li+li::before{content:"›";margin-right:8px}
+.crumbs a{color:var(--text2);text-decoration:none}
+.crumbs a:hover{color:var(--accent)}
+.offer-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,4vw,64px);align-items:center}
+.offer .lead{max-width:38rem}
+.price-card{background:rgba(2,18,31,.5);border:1px solid var(--line2);border-radius:26px;padding:clamp(22px,3vw,32px)}
+.price-card .for{color:var(--text2);font-size:15px;font-weight:500}
+.price-card .once{color:var(--spark);font-weight:600}
+.price-card ul{list-style:none;padding:0;display:grid;gap:10px;margin-bottom:22px}
+.price-card li{display:flex;gap:10px;font-size:16px;line-height:1.45}
+.price-card li svg{width:20px;height:20px;flex:none;color:var(--accent);margin-top:2px}
+.price-card .btn{width:100%}
+.price-card .delay{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--text2);margin:-6px 0 18px}
+.price-card .delay svg{width:18px;height:18px;flex:none;color:var(--spark)}
+.prose{max-width:46rem}
+.prose p{color:var(--text2);font-size:18px;margin-bottom:16px}
+.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--text);font-weight:600}
+.plans.two{grid-template-columns:repeat(2,1fr);max-width:880px}
+.plan .more{display:block;text-align:center;margin-top:14px;font-size:15px;color:var(--text2);text-decoration:underline;text-underline-offset:4px}
+.plan .more:hover{color:var(--accent)}
+.see{margin-top:24px}
+@media (max-width:1020px){
+  .offer-grid{grid-template-columns:1fr}
+  .plans.two{grid-template-columns:1fr;max-width:520px}
+}
