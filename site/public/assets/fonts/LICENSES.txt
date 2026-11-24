@@ -1,3 +1,7 @@
 Inter et Inter Tight — SIL Open Font License 1.1 (OFL).
 https://openfontlicense.org — Copyright The Inter Project Authors (https://github.com/rsms/inter).
 Sous-ensemble latin variable, servi depuis Google Fonts puis auto-hébergé.
+
+Bricolage Grotesque — SIL Open Font License 1.1 (OFL).
+Copyright 2022 The Bricolage Grotesque Project Authors.
+Sous-ensemble latin, axe de graisse variable (paquet @fontsource-variable/bricolage-grotesque 5.3.0), auto-hébergé.

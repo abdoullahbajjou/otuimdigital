@@ -7,7 +7,7 @@
 <meta name="description" content="{{description}}">
 <link rel="canonical" href="https://otiumdigital.com{{path}}">
 <meta name="robots" content="{{robots}}">
-<meta name="theme-color" content="#F7F6F2">
+<meta name="theme-color" content="#0A2540">
 <script>document.documentElement.classList.add("js")</script>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -15,13 +15,13 @@
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="https://otiumdigital.com{{path}}">
-<meta property="og:image" content="https://otiumdigital.com/assets/og-otium.png">
+<meta property="og:image" content="https://otiumdigital.com/assets/og-otium-atelier.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css?v={{v}}">
 {{jsonld}}
@@ -38,7 +38,7 @@
       <a href="/studio"{{cur:studio}}>Studio</a>
       <a href="/#questions">Questions</a>
     </nav>
-    <a class="btn sm" href="/contact">Parler de mon projet</a>
+    <a class="btn sm" href="/contact">Parlons-en <span aria-hidden="true">→</span></a>
     <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -60,6 +60,7 @@
 
 <footer class="foot">
   <div class="wrap">
+    <div class="big"><a href="/contact">Nous contacter <span class="arr" aria-hidden="true">{{il:arrow}}</span></a><p>Un premier échange de 30 minutes, offert, pour parler de votre entreprise et de vos objectifs. Réponse sous 24 h ouvrées.</p></div>
     <div class="cols">
       <div>
         <a class="logo" href="/">{{logo}}OTIUM</a>

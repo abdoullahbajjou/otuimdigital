@@ -3,12 +3,13 @@
 import { readFile, writeFile, mkdir, readdir, cp, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { illus } from './src/illus.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const src = join(root, 'src'), out = join(root, 'dist');
 const v = Date.now().toString(36);
 
-const logo = '<svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M12.9 40.7C4.6 42.5 1.5 41.2 4.8 36.8c3-4.3 12.2-11.3 23.9-17.4 15-7.9 28.4-11.6 30.6-8.1 1.2 1.9-1.2 5.3-6.3 9.5" stroke="#139E90" stroke-width="2.4" transform="translate(0 5)"/><circle cx="32" cy="32" r="17.5" stroke="currentColor" stroke-width="3.2"/><path d="M59.1 16.7c2.3 4.4-9.9 15.4-25.8 22.9C19 46.3 7.6 49.1 4.2 46.8" stroke="#139E90" stroke-width="3.4"/></svg>';
+const logo = '<svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M12.9 40.7C4.6 42.5 1.5 41.2 4.8 36.8c3-4.3 12.2-11.3 23.9-17.4 15-7.9 28.4-11.6 30.6-8.1 1.2 1.9-1.2 5.3-6.3 9.5" stroke="#3BE3C8" stroke-width="2.6" transform="translate(0 5)"/><circle cx="32" cy="32" r="17.5" stroke="currentColor" stroke-width="3.4"/><path d="M59.1 16.7c2.3 4.4-9.9 15.4-25.8 22.9C19 46.3 7.6 49.1 4.2 46.8" stroke="#3BE3C8" stroke-width="3.6"/></svg>';
 
 const ic = (d, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${d}</svg>`;
 const icons = {
@@ -33,7 +34,7 @@ const icons = {
   wa: '<svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 00-11.2 19.6L3 29l6.6-1.7A13 13 0 1016 3zm0 23.6a10.6 10.6 0 01-5.4-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.6 10.6 0 1116 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 01-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 00-.9.4 3.6 3.6 0 00-1.1 2.7 6.3 6.3 0 001.3 3.3 14.4 14.4 0 005.5 4.9c2 .9 2.8.9 3.9.8a3.3 3.3 0 002.1-1.5 2.7 2.7 0 00.2-1.5c-.1-.2-.3-.2-.6-.4z"/></svg>',
 };
 
-const mbar = `<div class="mbar" id="mbar"><a class="btn" href="/contact">Parler de mon projet</a><a class="btn ghost wa-btn" href="https://wa.me/41779238903" rel="noopener" aria-label="Écrire sur WhatsApp">${icons.wa}</a></div>`;
+const mbar = `<div class="mbar" id="mbar"><a class="btn" href="/contact">Parler de mon projet <span aria-hidden="true">→</span></a><a class="btn ghost wa-btn" href="https://wa.me/41779238903" rel="noopener" aria-label="Écrire sur WhatsApp">${icons.wa}</a></div>`;
 
 const layout = await readFile(join(src, 'layout.html'), 'utf8');
 await rm(out, { recursive: true, force: true });
@@ -60,6 +61,8 @@ for (const f of files) {
     .replaceAll('{{v}}', v)
     .replaceAll('{{logo}}', logo)
     .replace(/\{\{cur:(\w[\w-]*)\}\}/g, (_, k) => meta.current === k ? ' aria-current="page"' : '')
+    .replace(/\{\{il:([\w-]+)\}\}/g, (_, k) => illus(k))
+    .replaceAll('<span aria-hidden="true">→</span>', `<span class="arr" aria-hidden="true">${illus('arrow')}</span>`)
     .replace(/\{\{i:(\w+)\}\}/g, (_, k) => { if (!icons[k]) throw new Error('Icône inconnue ' + k); return icons[k]; });
   if (/\{\{/.test(html)) throw new Error('Variable non remplacée dans ' + f + ' : ' + html.match(/\{\{[^}]*\}\}/)[0]);
   await writeFile(join(out, f), html);
