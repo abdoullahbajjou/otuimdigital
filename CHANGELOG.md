@@ -4,6 +4,7 @@ Une ligne par mise en ligne : date, ce qui a changé, qui l'a publié. Permet de
 
 | Date | Changement | Par |
 | --- | --- | --- |
+| 2026-11-24 | Version « studio » : plus aucun prix affiché, nouvelle promesse « sites conçus pour vendre », 5 pages expertises, page Studio, formulaire qualifiant (besoin, secteur, budget, échéance), redirections /a-propos → /studio et /exemples → / (version 628241bf) | Abdoullah (avec Claude) |
 | 2026-11-23 | Accueil : textes réécrits avec les mots clés recherchés (site internet, sans abonnement, avis Google…), hébergement offert, nom de domaine seul frais (version 99d69eb6) | Abdoullah (avec Claude) |
 | 2026-11-23 | Protections : contrôle avant/après publication, fichier de redirections (`/paiement` → `/contact`) | Abdoullah (avec Claude) |
 | 2026-11-23 | Fichier de vérification Google Search Console | Abdoullah (avec Claude) |
