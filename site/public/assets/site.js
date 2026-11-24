@@ -9,7 +9,7 @@
   /* ---------- En-tête ---------- */
   const top = $('.top');
   const onScroll = () => top && top.classList.toggle('scrolled', scrollY > 8);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  addEventListener('scroll', onScroll, { passive: true }); requestAnimationFrame(onScroll);
 
   /* ---------- Menu mobile ---------- */
   const menu = $('#menu'), burger = $('.burger');

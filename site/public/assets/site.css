@@ -1,8 +1,8 @@
 /* OTIUM — « Atelier Océan »
    Sable + Abysse, un accent Lagon, une ponctuation Soleil. Titres Bricolage Grotesque, texte Inter.
    Échelle d'espacement : 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128 */
-@font-face{font-family:"Bricolage Grotesque";src:url(/assets/fonts/bricolage-grotesque-latin.woff2) format("woff2");font-weight:200 800;font-display:swap}
-@font-face{font-family:Inter;src:url(/assets/fonts/inter-latin.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url(/assets/fonts/bricolage-grotesque-latin.woff2) format("woff2");font-weight:200 800;font-display:optional}
+@font-face{font-family:Inter;src:url(/assets/fonts/inter-latin.woff2) format("woff2");font-weight:100 900;font-display:optional}
 
 :root{
   --sable:#F6F1E7; --ecume:#FFFCF6; --dune:#E3D9C6; --dune2:#D3C6AD;
@@ -23,7 +23,6 @@ img,svg,canvas{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3,h4,p,ul,ol,figure{margin:0}
 h1,h2,h3,h4{font-family:var(--display);font-weight:600;color:var(--abysse);letter-spacing:-.025em;text-wrap:balance}
-p{text-wrap:pretty}
 b,strong{color:var(--abysse);font-weight:600}
 ::selection{background:var(--lagon);color:var(--abysse)}
 :focus-visible{outline:2.5px solid var(--lagon-p);outline-offset:3px;border-radius:6px}
@@ -237,7 +236,7 @@ h1 em{font-style:normal;color:var(--lagon-p)}
 .foot .big p{max-width:24rem}
 .foot .logo{color:var(--sable)}
 .foot .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
-.foot h4{color:var(--sable);font:600 13px/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px}
+.foot h3{color:var(--sable);font:600 13px/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;margin:0 0 16px}
 .foot ul{list-style:none;padding:0;display:grid;gap:10px}
 .foot a{text-decoration:none;transition:color .2s}.foot a:hover{color:var(--lagon)}
 .foot .legal{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-dark);font-size:13px;color:rgba(246,241,231,.55);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
