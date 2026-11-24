@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTIUM — Planche de style « Atelier Océan »</title>
+<link rel="stylesheet" href="atelier.css">
+<style>
+body{padding:64px 72px 80px;width:1440px}
+.head{display:flex;justify-content:space-between;align-items:end;border-bottom:1.5px solid var(--abysse);padding-bottom:24px;margin-bottom:56px}
+.head h1{font-size:56px;line-height:1;letter-spacing:-.03em}
+.head p{font-size:15px;color:var(--brume);text-align:right}
+.logo{display:flex;align-items:center;gap:12px;font:700 22px/1 var(--display);letter-spacing:.18em;color:var(--abysse);margin-bottom:18px}
+.logo span{width:40px;height:40px}
+section{margin-bottom:64px}
+.t{display:flex;align-items:baseline;gap:16px;margin-bottom:24px}
+.t b{font:700 13px var(--body);letter-spacing:.12em;color:var(--lagon-p)}
+.t h2{font-size:26px}
+.sw{display:grid;grid-template-columns:repeat(9,1fr);gap:12px}
+.chip{border-radius:16px;overflow:hidden;border:1px solid var(--dune);background:var(--ecume)}
+.chip .c{height:96px}
+.chip div:last-child{padding:12px 14px;font-size:12.5px;line-height:1.45}
+.chip strong{display:block;color:var(--abysse);font:600 14px var(--body)}
+.typo{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start}
+.spec>*{margin-bottom:18px}
+.meta{font-size:12.5px;color:var(--brume);letter-spacing:.04em}
+.row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.box{padding:32px;border-radius:20px;border:1px solid var(--dune);background:var(--ecume)}
+.box.dark{background:var(--abysse);border-color:var(--abysse)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cap{font-size:12.5px;color:var(--brume);margin-top:10px}
+.ill{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ill .box{display:grid;place-items:center;height:220px}
+.ill .box>div{width:150px}
+.orbit{position:relative;height:220px}
+.orbit svg{width:100%;height:100%}
+</style></head>
+<body>
+<div class="head">
+  <div><div class="logo"><span data-illus="logo"></span>OTIUM</div><h1>Planche de style « Atelier Océan »</h1></div>
+  <p>Direction originale, inspirée de l'esprit de walt.digital<br>sans en reprendre ni la police, ni les couleurs, ni les illustrations.</p>
+</div>
+
+<section>
+  <div class="t"><b>01</b><h2>Palette</h2></div>
+  <div class="sw">
+    <div class="chip"><div class="c" style="background:#F6F1E7"></div><div><strong>Sable</strong>#F6F1E7<br>Fond des pages</div></div>
+    <div class="chip"><div class="c" style="background:#FFFCF6;border-bottom:1px solid #E3D9C6"></div><div><strong>Écume</strong>#FFFCF6<br>Cartes, formulaire</div></div>
+    <div class="chip"><div class="c" style="background:#0A2540"></div><div><strong>Abysse</strong>#0A2540<br>Titres, hero, pied</div></div>
+    <div class="chip"><div class="c" style="background:#3D5367"></div><div><strong>Marée</strong>#3D5367<br>Texte courant</div></div>
+    <div class="chip"><div class="c" style="background:#7D8C99"></div><div><strong>Brume</strong>#7D8C99<br>Légendes</div></div>
+    <div class="chip"><div class="c" style="background:#3BE3C8"></div><div><strong>Lagon</strong>#3BE3C8<br>Accent, boutons</div></div>
+    <div class="chip"><div class="c" style="background:#0B7A70"></div><div><strong>Lagon profond</strong>#0B7A70<br>Liens sur clair (AA)</div></div>
+    <div class="chip"><div class="c" style="background:#FFC65C"></div><div><strong>Soleil</strong>#FFC65C<br>Ponctuation rare</div></div>
+    <div class="chip"><div class="c" style="background:#E3D9C6"></div><div><strong>Dune</strong>#E3D9C6<br>Filets, bordures</div></div>
+  </div>
+</section>
+
+<section class="typo">
+  <div class="spec">
+    <div class="t"><b>02</b><h2>Typographie</h2></div>
+    <p class="meta">TITRES · BRICOLAGE GROTESQUE 650 · 92 px · interligne 0,98</p>
+    <h1 style="font-size:92px;line-height:.98;letter-spacing:-.035em;font-weight:650">Des sites conçus pour vendre.</h1>
+    <p class="meta">H2 · BRICOLAGE GROTESQUE 600 · 56 px</p>
+    <h2 style="font-size:56px;line-height:1.02;letter-spacing:-.03em">Un studio, cinq expertises.</h2>
+    <p class="meta">H3 · BRICOLAGE GROTESQUE 600 · 24 px</p>
+    <h3 style="font-size:24px">Création de site internet</h3>
+  </div>
+  <div class="spec" style="padding-top:64px">
+    <p class="meta">LIBELLÉ · INTER 600 · 13 px · MAJUSCULES · +0,12 em</p>
+    <span class="label"><i></i>Le regard du vendeur</span>
+    <p class="meta">TEXTE · INTER 400 · 18 px · interligne 1,65 · Marée</p>
+    <p style="font-size:18px">Avant d'écrire une ligne de code, nous travaillons ce qui fait acheter&nbsp;: votre message, vos preuves, le chemin de votre client.</p>
+    <p class="meta">ÉCHELLE · 13 · 15 · 17 · 20 · 24 · 32 · 44 · 56 · 72 · 92</p>
+  </div>
+</section>
+
+<section>
+  <div class="t"><b>03</b><h2>Boutons, liens, pastilles</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="box"><div class="row">
+      <a class="btn" href="#">Parler de mon projet <span class="arr" data-illus="arrow"></span></a>
+      <a class="btn is-hover" href="#">Au survol <span class="arr" data-illus="arrow"></span></a>
+      <a class="btn line" href="#">Nos expertises <span class="arr" data-illus="arrow"></span></a>
+    </div><div class="row" style="margin-top:22px"><a class="link" href="#">Tout savoir sur la refonte</a><span class="pill"><b></b>Diagnostic offert</span><span class="pill"><b></b>Restauration</span></div>
+    <p class="cap">Sur fond clair : bouton Abysse, rond de flèche Lagon : la flèche ↗ pivote vers → au survol.</p></div>
+    <div class="box dark on-dark"><div class="row">
+      <a class="btn lagon" href="#">Parler de mon projet <span class="arr" data-illus="arrow"></span></a>
+      <a class="btn line" href="#">Écrire sur WhatsApp <span class="arr" data-illus="arrow"></span></a>
+    </div><div class="row" style="margin-top:22px"><a class="link" href="#">Nos expertises</a><span class="pill"><b></b>Les fondateurs en direct</span></div>
+    <p class="cap" style="color:rgba(246,241,231,.6)">Sur fond Abysse : bouton Lagon, flèche Abysse. Le Soleil ne sert que de point.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="t"><b>04</b><h2>Cartes de services</h2></div>
+  <div class="cards">
+    <a class="card" href="#"><div data-illus="creation"></div><div><h3>Création de site internet</h3><p>Un site sur mesure qui présente votre entreprise et déclenche des demandes.</p></div><span class="arr" data-illus="arrow"></span></a>
+    <a class="card is-hover" href="#"><div data-illus="boutique"></div><div><h3>Boutique en ligne</h3><p>Une boutique rapide et à vous, sans abonnement à une plateforme.</p></div><span class="arr" data-illus="arrow"></span></a>
+    <a class="card dark" href="#"><div data-illus="visibilite"></div><div><h3>Diagnostic offert</h3><p>Nous vous disons ce qui freine vos ventes, en mots simples.</p></div><span class="arr" data-illus="arrow"></span></a>
+  </div>
+  <p class="cap">Au repos · au survol (filet Lagon profond, ombre douce, flèche qui pivote) · version mise en avant sur Abysse.</p>
+</section>
+
+<section>
+  <div class="t"><b>05</b><h2>Illustrations au trait et motif d'orbite</h2></div>
+  <div class="ill">
+    <div class="box"><div data-illus="creation"></div></div>
+    <div class="box"><div data-illus="boutique"></div></div>
+    <div class="box"><div data-illus="visibilite"></div></div>
+    <div class="box orbit"><svg viewBox="0 0 300 180" fill="none"><path d="M10 140C60 40 130 30 160 70s60 70 120 0" stroke="#0A2540" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="0" /><circle cx="160" cy="70" r="7" fill="#3BE3C8" stroke="#0A2540" stroke-width="1.75"/><circle cx="64" cy="70" r="6" fill="#FFFCF6" stroke="#0A2540" stroke-width="1.75"/><circle cx="246" cy="98" r="6" fill="#FFFCF6" stroke="#0A2540" stroke-width="1.75"/><circle cx="282" cy="66" r="4" fill="#FFC65C"/></svg></div>
+  </div>
+  <p class="cap">Une seule ligne, trait Abysse 1,75 px, aplat Lagon légèrement décalé (comme une impression), un point Soleil. À droite : l'orbite qui relie les sections et porte les étapes de la méthode.</p>
+</section>
+<script src="illus.js"></script>
+</body></html>

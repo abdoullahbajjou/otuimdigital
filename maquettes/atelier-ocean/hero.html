@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OTIUM — Hero « Atelier Océan »</title>
+<link rel="stylesheet" href="atelier.css">
+<style>
+.hero{background:radial-gradient(90% 120% at 80% 20%,var(--abysse2) 0%,var(--abysse) 55%);color:var(--sable);border-radius:0 0 50% 50%/0 0 64px 64px;overflow:hidden}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.top{display:flex;align-items:center;gap:32px;height:92px}
+.logo{display:flex;align-items:center;gap:12px;color:var(--sable);font:700 21px/1 var(--display);letter-spacing:.18em;text-decoration:none}
+.logo span{width:38px;height:38px}
+.nav{display:flex;gap:34px;margin-left:auto;font:500 15.5px var(--body);color:rgba(246,241,231,.86)}
+.nav a{color:inherit;text-decoration:none}
+.top .btn{min-height:48px;padding:6px 6px 6px 22px;font-size:15px}
+.top .btn .arr{width:36px;height:36px}
+.burger{display:none;margin-left:auto;width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(246,241,231,.4);background:linear-gradient(var(--sable),var(--sable)) center 17px/18px 1.75px no-repeat,linear-gradient(var(--sable),var(--sable)) center 22px/18px 1.75px no-repeat,linear-gradient(var(--sable),var(--sable)) center 27px/18px 1.75px no-repeat}
+.grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(28px,4vw,56px) 0 clamp(64px,7vw,104px)}
+h1{color:var(--sable);font-size:clamp(46px,5.5vw,80px);line-height:.98;letter-spacing:-.035em;font-weight:650;margin:22px 0 26px}
+h1 em{font-style:normal;color:var(--lagon);position:relative;white-space:nowrap}
+h1 em .sw{position:absolute;left:-1%;right:-4%;bottom:-.14em;height:.26em}
+h1 em .sw svg{width:100%;height:100%}
+.lead{font-size:clamp(17px,1.4vw,19.5px);line-height:1.62;color:rgba(246,241,231,.8);max-width:34rem;margin-bottom:34px}
+.lead b{color:var(--sable);font-weight:600}
+.ctas{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-bottom:40px}
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.art{width:100%;max-width:600px;margin-left:auto}
+@media (max-width:900px){
+  .nav,.top .btn{display:none}.burger{display:block}
+  .top{height:76px}
+  .grid{grid-template-columns:1fr;padding-top:8px}
+  .art{max-width:440px;margin:8px auto 0}
+  .hero{border-radius:0 0 50% 50%/0 0 32px 32px}
+  .ctas .btn{width:100%;justify-content:space-between}
+}
+</style></head>
+<body>
+<section class="hero on-dark">
+  <div class="wrap">
+    <header class="top">
+      <a class="logo" href="#"><span data-illus="logo:light"></span>OTIUM</a>
+      <nav class="nav"><a href="#">Expertises</a><a href="#">Méthode</a><a href="#">Studio</a><a href="#">Questions</a></nav>
+      <a class="btn lagon" href="#">Parlons-en <span class="arr" data-illus="arrow"></span></a>
+      <span class="burger" aria-hidden="true"></span>
+    </header>
+    <div class="grid">
+      <div>
+        <span class="label"><i></i>Studio de création de sites internet</span>
+        <h1>Des sites internet conçus pour <em>vendre<span class="sw" data-illus="swash"></span></em>.</h1>
+        <p class="lead">Un vendeur de <b>15 ans d'expérience</b> et un développeur, en direct. Nous concevons des sites qui transforment vos visiteurs en clients&nbsp;: demandes de devis, réservations, ventes.</p>
+        <div class="ctas">
+          <a class="btn lagon" href="#">Parler de mon projet <span class="arr" data-illus="arrow"></span></a>
+          <a class="link" href="#">Nos expertises</a>
+        </div>
+        <div class="pills"><span class="pill"><b></b>Diagnostic offert</span><span class="pill"><b></b>Les fondateurs en direct</span><span class="pill"><b></b>Le site est à vous</span></div>
+      </div>
+      <div class="art" data-illus="hero"></div>
+    </div>
+  </div>
+</section>
+<section style="padding:72px 0"><div class="wrap"><span class="label"><i></i>Nos expertises</span><h2 style="font-size:clamp(36px,5vw,56px);line-height:1.02;margin-top:18px;max-width:16ch">Un studio, cinq expertises pour vendre en ligne.</h2></div></section>
+<script src="illus.js"></script>
+</body></html>
