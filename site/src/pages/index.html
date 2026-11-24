@@ -25,27 +25,33 @@
 ]}-->
 <!-- ================= HERO ================= -->
 <section class="hero" aria-labelledby="h-hero">
-  <div class="wrap">
+  <div class="wrap hero-head">
     <div>
       <span class="kicker">Studio de création de sites internet</span>
-      <h1 id="h-hero">Des sites internet conçus pour <em>vendre</em>.</h1>
-      <p class="lead">Un vendeur de <b>15 ans d'expérience</b> et un développeur, en direct. Ensemble, nous concevons des sites qui transforment vos visiteurs en clients : demandes de devis, réservations, ventes.</p>
+      <h1 id="h-hero"><span class="mute">Des sites internet</span> conçus pour <em>vendre</em>.</h1>
+    </div>
+    <div class="hero-side">
+      <p class="lead">Un vendeur de <b>15 ans d'expérience</b> et un développeur, en direct. Nous concevons des sites qui transforment vos visiteurs en clients : demandes de devis, réservations, ventes.</p>
       <div class="ctas">
         <a class="btn" href="/contact">Parler de mon projet <span aria-hidden="true">→</span></a>
-        <a class="link" href="#expertises">Voir nos expertises</a>
+        <a class="link" href="#expertises">Nos expertises</a>
       </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-panel">
+      <canvas class="planet" width="1000" height="1000" aria-hidden="true"></canvas>
       <ul class="proofs" aria-label="Nos engagements">
         <li>Diagnostic offert</li>
         <li>Les fondateurs en direct</li>
         <li>Le site est à vous</li>
       </ul>
     </div>
-    <div class="hero-visual" aria-hidden="true"><canvas class="planet" width="1000" height="1000"></canvas></div>
   </div>
 </section>
 
-<!-- ================= CONSTAT ================= -->
-<section class="sec" aria-labelledby="h-pb">
+
+<section class="sec tight-b" aria-labelledby="h-pb">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Le constat</span>
@@ -61,25 +67,39 @@
   </div>
 </section>
 
+<!-- ================= CHIFFRES ================= -->
+<section class="sec" style="padding-top:0" aria-label="OTIUM en chiffres">
+  <div class="wrap">
+    <div class="figs rv">
+      <div class="fig"><p class="n">15<small>ans</small></p><p class="lbl">d'expérience dans la vente</p></div>
+      <div class="fig"><p class="n">24<small>h</small></p><p class="lbl">pour vous répondre, jours ouvrés</p></div>
+      <div class="fig"><p class="n">100<small>%</small></p><p class="lbl">à distance, partout dans le monde</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= EXPERTISES ================= -->
-<section class="sec alt" id="expertises" aria-labelledby="h-exp">
+<section class="sec dark" id="expertises" aria-labelledby="h-exp">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Nos expertises</span>
       <h2 id="h-exp">De la création à la croissance, tout ce qu'il faut pour vendre en ligne.</h2>
     </div>
     <ul class="exp">
-      <li class="rv"><a href="/creation-site-internet">{{i:door}}<h3>Création de site internet</h3><p>Un site sur mesure qui présente votre entreprise et déclenche des demandes.</p><span class="go">Découvrir →</span></a></li>
-      <li class="rv"><a href="/site-e-commerce">{{i:bag}}<h3>Boutique en ligne</h3><p>Une boutique rapide et à vous, pour vendre vos produits partout, sans abonnement à une plateforme.</p><span class="go">Découvrir →</span></a></li>
-      <li class="rv"><a href="/refonte-site-internet">{{i:tool}}<h3>Refonte de site</h3><p>Votre site existe mais ne rapporte rien ? On le remet à neuf sans perdre votre place sur Google.</p><span class="go">Découvrir →</span></a></li>
-      <li class="rv"><a href="/referencement-google">{{i:google}}<h3>Visibilité sur Google</h3><p>Référencement, fiche Google et campagnes pour être trouvé par les bons clients.</p><span class="go">Découvrir →</span></a></li>
-      <li class="rv"><a href="/accompagnement">{{i:chat}}<h3>Accompagnement mensuel</h3><p>Un site qui évolue, des contenus, des chiffres suivis : on continue de grandir ensemble.</p><span class="go">Découvrir →</span></a></li>
-      <li class="rv hot"><a href="/contact?existant=1">{{i:search}}<h3>Diagnostic offert</h3><p>Envoyez-nous votre site ou votre projet : nous vous disons ce qui freine vos ventes, en mots simples.</p><span class="go">Demander mon diagnostic →</span></a></li>
+      <li class="rv"><a href="/creation-site-internet"><span class="num">01</span><h3>Création de site internet</h3><p>Un site sur mesure qui présente votre entreprise et déclenche des demandes.</p><span class="go" aria-hidden="true">→</span></a></li>
+      <li class="rv"><a href="/site-e-commerce"><span class="num">02</span><h3>Boutique en ligne</h3><p>Une boutique rapide et à vous, pour vendre partout, sans abonnement à une plateforme.</p><span class="go" aria-hidden="true">→</span></a></li>
+      <li class="rv"><a href="/refonte-site-internet"><span class="num">03</span><h3>Refonte de site</h3><p>Votre site ne rapporte rien ? On le remet à neuf sans perdre votre place sur Google.</p><span class="go" aria-hidden="true">→</span></a></li>
+      <li class="rv"><a href="/referencement-google"><span class="num">04</span><h3>Visibilité sur Google</h3><p>Référencement, fiche Google et campagnes pour être trouvé par les bons clients.</p><span class="go" aria-hidden="true">→</span></a></li>
+      <li class="rv"><a href="/accompagnement"><span class="num">05</span><h3>Accompagnement mensuel</h3><p>Un site qui évolue, des contenus, des chiffres suivis : on continue de grandir ensemble.</p><span class="go" aria-hidden="true">→</span></a></li>
     </ul>
+    <div class="exp-more rv">
+      <p>Vous ne savez pas par où commencer ? Le diagnostic est offert.</p>
+      <a class="btn" href="/contact?existant=1">Demander mon diagnostic <span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- ================= LE REGARD DU VENDEUR ================= -->
+
 <section class="sec" aria-labelledby="h-seller">
   <div class="wrap">
     <div class="sec-head rv">
@@ -123,10 +143,10 @@
       <h2 id="h-video">Ce que nous changeons pour une entreprise, en vrai.</h2>
       <p class="lead">Karim a un excellent café, mais presque personne ne le trouve. Voici ce qu'OTIUM met en place pour lui :</p>
       <ol class="story-steps">
-        <li><b>1</b><span><strong>Un site clair</strong>, parfait sur téléphone</span></li>
-        <li><b>2</b><span><strong>Sa fiche Google</strong>, avec ses avis</span></li>
-        <li><b>3</b><span><strong>Une plaque NFC</strong> sur le comptoir</span></li>
-        <li><b>4</b><span><strong>Un bouton WhatsApp</strong> pour réserver</span></li>
+        <li><b>01</b><span><strong>Un site clair</strong>, parfait sur téléphone</span></li>
+        <li><b>02</b><span><strong>Sa fiche Google</strong>, avec ses avis</span></li>
+        <li><b>03</b><span><strong>Une plaque NFC</strong> sur le comptoir</span></li>
+        <li><b>04</b><span><strong>Un bouton WhatsApp</strong> pour réserver</span></li>
       </ol>
       <a class="btn" href="/contact">Parler de mon projet <span aria-hidden="true">→</span></a>
     </div>
@@ -164,7 +184,7 @@
   <div class="wrap redo">
     <div class="rv">
       <span class="eyebrow">Vous avez déjà un site ?</span>
-      <h2 id="h-refonte">Refonte de site internet : le vôtre ne ramène pas de clients ? On le remet à neuf.</h2>
+      <h2 id="h-refonte">Refonte de site internet : on remet le vôtre à neuf.</h2>
       <p class="lead">Un site mal fait coûte plus cher qu'il n'y paraît : chaque visiteur qui repart, c'est un client perdu. Reconnaissez-vous l'un de ces signes ?</p>
       <ul class="signs">
         <li>{{i:mobile}}Il est difficile à lire sur téléphone</li>

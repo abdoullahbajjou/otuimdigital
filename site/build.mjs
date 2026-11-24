@@ -8,7 +8,7 @@ const root = fileURLToPath(new URL('.', import.meta.url));
 const src = join(root, 'src'), out = join(root, 'dist');
 const v = Date.now().toString(36);
 
-const logo = '<svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M12.9 40.7C4.6 42.5 1.5 41.2 4.8 36.8c3-4.3 12.2-11.3 23.9-17.4 15-7.9 28.4-11.6 30.6-8.1 1.2 1.9-1.2 5.3-6.3 9.5" stroke="#3BE3C8" stroke-width="2.4" transform="translate(0 5)"/><circle cx="32" cy="32" r="17.5" stroke="#F2FAFF" stroke-width="3.2"/><path d="M59.1 16.7c2.3 4.4-9.9 15.4-25.8 22.9C19 46.3 7.6 49.1 4.2 46.8" stroke="#3BE3C8" stroke-width="3.4"/></svg>';
+const logo = '<svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" aria-hidden="true"><path d="M12.9 40.7C4.6 42.5 1.5 41.2 4.8 36.8c3-4.3 12.2-11.3 23.9-17.4 15-7.9 28.4-11.6 30.6-8.1 1.2 1.9-1.2 5.3-6.3 9.5" stroke="#139E90" stroke-width="2.4" transform="translate(0 5)"/><circle cx="32" cy="32" r="17.5" stroke="currentColor" stroke-width="3.2"/><path d="M59.1 16.7c2.3 4.4-9.9 15.4-25.8 22.9C19 46.3 7.6 49.1 4.2 46.8" stroke="#139E90" stroke-width="3.4"/></svg>';
 
 const ic = (d, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${extra}>${d}</svg>`;
 const icons = {
