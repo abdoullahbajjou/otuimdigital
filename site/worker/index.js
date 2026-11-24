@@ -2,8 +2,10 @@
 // Secrets attendus (wrangler secret put) : RESEND_API_KEY. Variable : MAIL_FROM (ex. "OTIUM <site@otiumdigital.com>").
 const ORIGINS = new Set(['https://otiumdigital.com', 'https://www.otiumdigital.com']);
 const TO = 'contact@otiumdigital.com';
-const FORMULES = ['Vitrine (499 €)', 'Site complet (700 €)', 'E-commerce (1 200 €)', 'Je ne sais pas encore', 'Refonte de mon site actuel'];
-const ACTIVITES = ['Restaurant / café', 'Institut de beauté', 'Chauffeur privé / VTC', 'Librairie', 'Boutique / commerce', 'Artisan', 'Indépendant / profession libérale', 'Autre'];
+const BESOINS = ['Créer un site internet', 'Créer une boutique en ligne', 'Refaire mon site actuel', 'Être plus visible sur Google', 'Être accompagné chaque mois', 'Je ne sais pas encore'];
+const ACTIVITES = ['Restauration / hôtellerie', 'Beauté / bien-être', 'Santé', 'Immobilier', 'Artisan / BTP', 'Conseil / services', 'Commerce / marque', 'Autre'];
+const BUDGETS = ['Moins de 3 000 €', '3 000 à 8 000 €', '8 000 à 20 000 €', 'Plus de 20 000 €', 'Je ne sais pas encore'];
+const ECHEANCES = ['Dès que possible', 'Dans 1 à 3 mois', 'Dans plus de 3 mois'];
 import REDIRECTS from '../redirects.json' with { type: 'json' };
 
 const hits = new Map(); // limite simple, par instance
@@ -28,8 +30,9 @@ export function validate(d) {
   const f = { kind: d.kind === 'question' ? 'question' : 'projet', nom: str(d.nom, 100), email: str(d.email, 254), telephone: str(d.telephone, 40), site_actuel: str(d.site_actuel, 200), message: str(d.message, 3000) };
   if (f.nom.length < 2 || /[\r\n]/.test(f.nom) || !emailOk(f.email) || d.consent !== true) return null;
   if (f.kind === 'projet') {
-    f.formule = str(d.formule, 40); f.activite = str(d.activite, 60); f.activite_autre = str(d.activite_autre, 80);
-    if (!FORMULES.includes(f.formule) || !ACTIVITES.includes(f.activite)) return null;
+    f.besoin = str(d.besoin, 60); f.activite = str(d.activite, 60); f.activite_autre = str(d.activite_autre, 80); f.budget = str(d.budget, 40); f.echeance = str(d.echeance, 40);
+    if (!BESOINS.includes(f.besoin) || !ACTIVITES.includes(f.activite) || !BUDGETS.includes(f.budget)) return null;
+    if (f.echeance && !ECHEANCES.includes(f.echeance)) return null;
     if (f.activite === 'Autre' && f.activite_autre.length < 2) return null;
   } else if (f.message.length < 5) return null;
   return f;
@@ -37,11 +40,11 @@ export function validate(d) {
 
 export function buildEmail(f, from) {
   const act = f.activite === 'Autre' ? `Autre : ${f.activite_autre}` : f.activite;
-  const subject = f.kind === 'projet' ? `[OTIUM] Projet — ${f.formule} — ${act}` : `[OTIUM] Question — ${f.nom}`;
+  const subject = f.kind === 'projet' ? `[OTIUM] Projet — ${f.besoin} — ${f.budget} — ${act}` : `[OTIUM] Question — ${f.nom}`;
   const text = [
     f.kind === 'projet' ? 'Nouvelle demande de projet' : 'Nouvelle question', '',
     `Nom : ${f.nom}`, `E-mail : ${f.email}`, `Téléphone / WhatsApp : ${f.telephone || '—'}`, `Site actuel : ${f.site_actuel || '—'}`,
-    ...(f.kind === 'projet' ? [`Formule : ${f.formule}`, `Activité : ${act}`] : []),
+    ...(f.kind === 'projet' ? [`Besoin : ${f.besoin}`, `Activité : ${act}`, `Budget : ${f.budget}`, `Échéance : ${f.echeance || '—'}`] : []),
     '', 'Message :', f.message || '—',
   ].join('\n');
   return { from, to: [TO], reply_to: f.email, subject, text };

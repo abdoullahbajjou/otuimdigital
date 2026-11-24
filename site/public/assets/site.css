@@ -249,7 +249,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .field>label,.field legend{display:block;font-weight:600;margin-bottom:8px;font-size:16px}
 .field .hint{font-weight:400;color:var(--text3);font-size:14px}
 fieldset{border:0;padding:0;margin:0 0 22px;min-width:0}
-input[type=text],input[type=email],input[type=tel],textarea{width:100%;min-height:52px;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line2);background:var(--abyss);color:var(--text);font:400 16px/1.4 var(--body)}
+input[type=text],input[type=email],input[type=tel],input[type=url],textarea{width:100%;min-height:52px;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line2);background:var(--abyss);color:var(--text);font:400 16px/1.4 var(--body)}
 textarea{min-height:120px;resize:vertical}
 input:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(59,227,200,.25)}
 [aria-invalid=true]{border-color:#FF8A8A!important}
@@ -351,3 +351,16 @@ input:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 
   .offer-grid{grid-template-columns:1fr}
   .plans.two{grid-template-columns:1fr;max-width:520px}
 }
+
+/* Expertises (cartes cliquables) */
+.exp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none;padding:0}
+.exp a{display:flex;flex-direction:column;height:100%;padding:26px;border:1px solid var(--line);border-radius:22px;background:var(--card);text-decoration:none;transition:border-color .2s,transform .2s var(--ease)}
+.exp a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.exp svg{width:30px;height:30px;color:var(--accent);margin-bottom:16px}
+.exp h3{font-size:22px;margin-bottom:8px}
+.exp p{color:var(--text2);font-size:16px;flex:1}
+.exp .go{margin-top:18px;font-weight:600;color:var(--accent)}
+.exp .hot a{border:2px solid var(--accent);background:var(--card2)}
+.price-card h2{font-size:22px;margin-bottom:14px}
+@media (max-width:1020px){.exp{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.exp{grid-template-columns:1fr}}

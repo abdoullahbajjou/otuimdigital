@@ -2,14 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker, { validate, buildEmail, redirectFor } from '../worker/index.js';
 
-const ok = { kind: 'projet', nom: 'Salon Lumière', email: 'a@b.fr', formule: 'Site complet (700 €)', activite: 'Institut de beauté', consent: true, elapsed: 9000 };
+const ok = { kind: 'projet', nom: 'Salon Lumière', email: 'a@b.fr', besoin: 'Créer un site internet', activite: 'Beauté / bien-être', budget: '3 000 à 8 000 €', consent: true, elapsed: 9000 };
 const env = { RESEND_API_KEY: 'k', MAIL_FROM: 'OTIUM <site@otiumdigital.com>', ASSETS: { fetch: async () => new Response('<html>', { headers: { 'Content-Type': 'text/html' } }) } };
 const post = (body, origin = 'https://otiumdigital.com') => new Request('https://otiumdigital.com/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: origin, 'CF-Connecting-IP': Math.random().toString() }, body: JSON.stringify(body) });
 
 test('validation : projet complet accepté', () => assert.equal(validate(ok).nom, 'Salon Lumière'));
 test('validation : e-mail invalide refusé', () => assert.equal(validate({ ...ok, email: 'nope' }), null));
 test('validation : consentement obligatoire', () => assert.equal(validate({ ...ok, consent: false }), null));
-test('validation : formule inconnue refusée', () => assert.equal(validate({ ...ok, formule: 'Gratuit' }), null));
+test('validation : besoin inconnu refusé', () => assert.equal(validate({ ...ok, besoin: 'Gratuit' }), null));
+test('validation : budget obligatoire et échéance contrôlée', () => {
+  assert.equal(validate({ ...ok, budget: '' }), null);
+  assert.equal(validate({ ...ok, echeance: 'Hier' }), null);
+  assert.equal(validate({ ...ok, echeance: 'Dans 1 à 3 mois' }).echeance, 'Dans 1 à 3 mois');
+});
 test('validation : « Autre » exige une précision', () => {
   assert.equal(validate({ ...ok, activite: 'Autre' }), null);
   assert.equal(validate({ ...ok, activite: 'Autre', activite_autre: 'Fleuriste' }).activite_autre, 'Fleuriste');
@@ -23,7 +28,7 @@ test('e-mail construit : objet, destinataire et réponse', () => {
   const m = buildEmail(validate(ok), env.MAIL_FROM);
   assert.equal(m.to[0], 'contact@otiumdigital.com');
   assert.equal(m.reply_to, 'a@b.fr');
-  assert.match(m.subject, /Projet — Site complet/);
+  assert.match(m.subject, /Projet — Créer un site internet — 3 000 à 8 000 €/);
 });
 test('API : origine étrangère refusée', async () => assert.equal((await worker.fetch(post(ok, 'https://evil.com'), env)).status, 403));
 test('API : envoi via Resend', async () => {
@@ -40,8 +45,8 @@ test('pages : en-têtes de sécurité ajoutés', async () => {
   const r = await worker.fetch(new Request('https://otiumdigital.com/'), env);
   assert.equal(r.headers.get('X-Content-Type-Options'), 'nosniff');
 });
-test("refonte : formule acceptée et site actuel dans l'e-mail", () => {
-  const f = validate({ ...ok, formule: 'Refonte de mon site actuel', site_actuel: 'www.mon-salon.fr' });
+test("refonte : besoin accepté et site actuel dans l'e-mail", () => {
+  const f = validate({ ...ok, besoin: 'Refaire mon site actuel', site_actuel: 'www.mon-salon.fr' });
   assert.match(buildEmail(f, 'x').text, /Site actuel : www.mon-salon.fr/);
 });
 test('vidéo : réponse partielle 206 pour Safari', async () => {

@@ -1,6 +1,6 @@
 <!--{
-"title":"Contact — Demandez votre site internet | OTIUM",
-"description":"Décrivez votre activité en deux minutes. Nous vous recontactons sous 24 h ouvrées, gratuitement et sans engagement. Par formulaire, e-mail ou WhatsApp.",
+"title":"Contact — Parlons de votre projet | OTIUM",
+"description":"Présentez votre projet en deux minutes : création de site, boutique en ligne, refonte ou visibilité. Réponse sous 24 h ouvrées, diagnostic offert et sans engagement.",
 "path":"/contact",
 "nombar":true,
 "jsonld":[{"@context":"https://schema.org","@type":"ContactPage","name":"Contacter OTIUM","url":"https://otiumdigital.com/contact"}]
@@ -10,13 +10,13 @@
     <div class="sec-head">
       <span class="eyebrow">Contact</span>
       <h1 id="h-contact">Parlons de votre projet.</h1>
-      <p class="lead" style="margin-bottom:0">Deux minutes suffisent. Nous vous recontactons sous 24 h ouvrées, <b>gratuitement et sans engagement</b>.</p>
+      <p class="lead" style="margin-bottom:0">Deux minutes suffisent. Nous vous répondons sous 24 h ouvrées avec une première analyse, <b>offerte et sans engagement</b>. Le prix vient ensuite : clair, fixe, adapté à votre projet.</p>
     </div>
 
     <div class="contact-grid">
       <div class="panel">
         <div class="tabs" role="tablist" aria-label="Type de demande">
-          <button type="button" role="tab" id="tab-projet" aria-controls="pane-projet" aria-selected="true">Je veux un site</button>
+          <button type="button" role="tab" id="tab-projet" aria-controls="pane-projet" aria-selected="true">J'ai un projet</button>
           <button type="button" role="tab" id="tab-question" aria-controls="pane-question" aria-selected="false" tabindex="-1">J'ai une question</button>
         </div>
 
@@ -38,29 +38,30 @@
           </div>
           <div class="field">
             <label for="p-site">Votre site actuel, si vous en avez un <span class="hint">(facultatif)</span></label>
-            <input id="p-site" name="site_actuel" type="url" inputmode="url" autocomplete="url" maxlength="200" placeholder="www.votre-commerce.com">
+            <input id="p-site" name="site_actuel" type="url" inputmode="url" autocomplete="url" maxlength="200" placeholder="www.votre-entreprise.com">
           </div>
           <fieldset>
-            <legend>Quelle formule vous intéresse ?</legend>
-            <div class="opts plans-opt" id="p-formule">
-              <label class="opt"><input type="radio" name="formule" value="Vitrine (499 €)" data-key="vitrine"><span>Vitrine<small>499 € · être présent</small></span></label>
-              <label class="opt"><input type="radio" name="formule" value="Site complet (700 €)" data-key="complet"><span>Site complet<small>700 € · attirer des clients</small></span></label>
-              <label class="opt"><input type="radio" name="formule" value="E-commerce (1 200 €)" data-key="ecommerce"><span>E-commerce<small>1 200 € · vendre en ligne</small></span></label>
-              <label class="opt"><input type="radio" name="formule" value="Je ne sais pas encore" data-key="aide"><span>Je ne sais pas encore<small>On vous conseille</small></span></label>
-              <label class="opt"><input type="radio" name="formule" value="Refonte de mon site actuel" data-key="refonte"><span>Refaire mon site actuel<small>Diagnostic gratuit</small></span></label>
+            <legend>De quoi avez-vous besoin ?</legend>
+            <div class="opts plans-opt" id="p-besoin">
+              <label class="opt"><input type="radio" name="besoin" value="Créer un site internet" data-key="creation"><span>Créer un site internet<small>Présenter et convaincre</small></span></label>
+              <label class="opt"><input type="radio" name="besoin" value="Créer une boutique en ligne" data-key="ecommerce"><span>Créer une boutique en ligne<small>Vendre sur internet</small></span></label>
+              <label class="opt"><input type="radio" name="besoin" value="Refaire mon site actuel" data-key="refonte"><span>Refaire mon site actuel<small>Diagnostic offert</small></span></label>
+              <label class="opt"><input type="radio" name="besoin" value="Être plus visible sur Google" data-key="visibilite"><span>Être plus visible sur Google<small>Référencement, campagnes</small></span></label>
+              <label class="opt"><input type="radio" name="besoin" value="Être accompagné chaque mois" data-key="suivi"><span>Être accompagné chaque mois<small>Évolutions et croissance</small></span></label>
+              <label class="opt"><input type="radio" name="besoin" value="Je ne sais pas encore" data-key="aide"><span>Je ne sais pas encore<small>On vous conseille</small></span></label>
             </div>
-            <p class="err" id="p-formule-err"></p>
+            <p class="err" id="p-besoin-err"></p>
           </fieldset>
           <fieldset>
-            <legend>Quelle est votre activité ?</legend>
+            <legend>Votre secteur</legend>
             <div class="opts chips" id="p-activite">
-              <label class="opt"><input type="radio" name="activite" value="Restaurant / café" data-key="restaurant"><span>Restaurant / café</span></label>
-              <label class="opt"><input type="radio" name="activite" value="Institut de beauté" data-key="beaute"><span>Institut de beauté</span></label>
-              <label class="opt"><input type="radio" name="activite" value="Chauffeur privé / VTC" data-key="chauffeur"><span>Chauffeur privé / VTC</span></label>
-              <label class="opt"><input type="radio" name="activite" value="Librairie" data-key="librairie"><span>Librairie</span></label>
-              <label class="opt"><input type="radio" name="activite" value="Boutique / commerce" data-key="boutique"><span>Boutique / commerce</span></label>
-              <label class="opt"><input type="radio" name="activite" value="Artisan" data-key="artisan"><span>Artisan</span></label>
-              <label class="opt"><input type="radio" name="activite" value="Indépendant / profession libérale" data-key="independant"><span>Indépendant</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Restauration / hôtellerie" data-key="restauration"><span>Restauration / hôtellerie</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Beauté / bien-être" data-key="beaute"><span>Beauté / bien-être</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Santé" data-key="sante"><span>Santé</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Immobilier" data-key="immobilier"><span>Immobilier</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Artisan / BTP" data-key="artisan"><span>Artisan / BTP</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Conseil / services" data-key="conseil"><span>Conseil / services</span></label>
+              <label class="opt"><input type="radio" name="activite" value="Commerce / marque" data-key="commerce"><span>Commerce / marque</span></label>
               <label class="opt"><input type="radio" name="activite" value="Autre" data-key="autre"><span>Autre</span></label>
             </div>
             <p class="err" id="p-activite-err"></p>
@@ -70,9 +71,28 @@
             <input id="p-autre" name="activite_autre" type="text" maxlength="80">
             <p class="err" id="p-autre-err"></p>
           </div>
+          <fieldset>
+            <legend>Quel budget envisagez-vous ?</legend>
+            <div class="opts chips" id="p-budget">
+              <label class="opt"><input type="radio" name="budget" value="Moins de 3 000 €" data-key="b1"><span>Moins de 3 000 €</span></label>
+              <label class="opt"><input type="radio" name="budget" value="3 000 à 8 000 €" data-key="b2"><span>3 000 à 8 000 €</span></label>
+              <label class="opt"><input type="radio" name="budget" value="8 000 à 20 000 €" data-key="b3"><span>8 000 à 20 000 €</span></label>
+              <label class="opt"><input type="radio" name="budget" value="Plus de 20 000 €" data-key="b4"><span>Plus de 20 000 €</span></label>
+              <label class="opt"><input type="radio" name="budget" value="Je ne sais pas encore" data-key="b0"><span>Je ne sais pas encore</span></label>
+            </div>
+            <p class="err" id="p-budget-err"></p>
+          </fieldset>
+          <fieldset>
+            <legend>Pour quand ? <span class="hint">(facultatif)</span></legend>
+            <div class="opts chips" id="p-echeance">
+              <label class="opt"><input type="radio" name="echeance" value="Dès que possible" data-key="vite"><span>Dès que possible</span></label>
+              <label class="opt"><input type="radio" name="echeance" value="Dans 1 à 3 mois" data-key="trimestre"><span>Dans 1 à 3 mois</span></label>
+              <label class="opt"><input type="radio" name="echeance" value="Dans plus de 3 mois" data-key="plus-tard"><span>Dans plus de 3 mois</span></label>
+            </div>
+          </fieldset>
           <div class="field">
-            <label for="p-msg">Un mot sur votre projet <span class="hint">(facultatif)</span></label>
-            <textarea id="p-msg" name="message" maxlength="3000" placeholder="Ex. : j'ai un salon de coiffure, je voudrais que mes clientes puissent réserver en ligne."></textarea>
+            <label for="p-msg">Votre projet en quelques mots <span class="hint">(facultatif)</span></label>
+            <textarea id="p-msg" name="message" maxlength="3000" placeholder="Ex. : notre clinique veut recevoir plus de demandes de rendez-vous en ligne."></textarea>
           </div>
           <input class="hp" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
           <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte qu'OTIUM utilise ces informations pour me répondre. <a href="/confidentialite">Confidentialité</a></span></label>
@@ -126,7 +146,7 @@
           <li>{{i:mail}}<a href="mailto:contact@otiumdigital.com">contact@otiumdigital.com</a></li>
           <li>{{i:clock}}Réponse sous 24 h ouvrées</li>
         </ul>
-        <p>Premier échange gratuit et sans engagement. Nous travaillons 100 % à distance, où que vous soyez.</p>
+        <p>Premier échange et diagnostic offerts. Vous parlez directement aux fondateurs. Nous travaillons 100 % à distance, partout dans le monde.</p>
       </aside>
     </div>
   </div>

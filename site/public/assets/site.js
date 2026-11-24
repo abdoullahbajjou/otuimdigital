@@ -116,8 +116,9 @@
   const q = new URLSearchParams(location.search);
   if (q.get('question') !== null && tabs[1]) showTab(tabs[1]);
   const pre = (name, key) => { const el = key && $(`input[name="${name}"][data-key="${key}"]`); if (el) el.checked = true; };
-  pre('formule', q.get('formule')); pre('activite', q.get('activite'));
-  if (q.get('existant') !== null) { pre('formule', 'refonte'); const site = $('#p-site'); if (site) setTimeout(() => site.focus(), 300); }
+  const legacy = { vitrine: 'creation', complet: 'creation', ecommerce: 'ecommerce', refonte: 'refonte', aide: 'aide' };
+  pre('besoin', q.get('besoin') || legacy[q.get('formule')]); pre('activite', q.get('activite'));
+  if (q.get('existant') !== null) { pre('besoin', 'refonte'); const site = $('#p-site'); if (site) setTimeout(() => site.focus(), 300); }
 
   const autreWrap = $('#p-autre-wrap');
   const syncAutre = () => { const on = !!$('input[name="activite"][data-key="autre"]:checked'); if (autreWrap) autreWrap.hidden = !on; };
@@ -134,8 +135,9 @@
     set(p + '-nom', (d.nom || '').trim().length < 2 ? 'Indiquez un nom pour que nous puissions vous répondre.' : '', f.nom);
     set(p + '-email', !emailOk((d.email || '').trim()) ? 'Indiquez une adresse e-mail valide, par exemple nom@exemple.com.' : '', f.email);
     if (p === 'p') {
-      set('p-formule', !d.formule ? 'Choisissez une formule (ou « Je ne sais pas encore »).' : '', $('#p-formule input'));
-      set('p-activite', !d.activite ? 'Choisissez votre activité.' : '', $('#p-activite input'));
+      set('p-besoin', !d.besoin ? 'Choisissez votre besoin (ou « Je ne sais pas encore »).' : '', $('#p-besoin input'));
+      set('p-activite', !d.activite ? 'Choisissez votre secteur.' : '', $('#p-activite input'));
+      set('p-budget', !d.budget ? 'Choisissez une fourchette (ou « Je ne sais pas encore »).' : '', $('#p-budget input'));
       set('p-autre', d.activite === 'Autre' && (d.activite_autre || '').trim().length < 2 ? 'Précisez votre activité.' : '', f.activite_autre);
     } else {
       set('q-msg', (d.message || '').trim().length < 5 ? 'Écrivez votre question.' : '', f.message);
@@ -145,7 +147,7 @@
   };
   const waText = d => {
     const lines = d.kind === 'projet'
-      ? [`Bonjour OTIUM, je suis ${d.nom}.`, `Formule : ${d.formule || '?'}`, d.site_actuel ? `Site actuel : ${d.site_actuel}` : '', `Activité : ${d.activite === 'Autre' ? d.activite_autre : d.activite || '?'}`, d.message ? `Projet : ${d.message}` : '', `E-mail : ${d.email}`]
+      ? [`Bonjour OTIUM, je suis ${d.nom}.`, `Besoin : ${d.besoin || '?'}`, d.budget ? `Budget : ${d.budget}` : '', d.echeance ? `Échéance : ${d.echeance}` : '', d.site_actuel ? `Site actuel : ${d.site_actuel}` : '', `Secteur : ${d.activite === 'Autre' ? d.activite_autre : d.activite || '?'}`, d.message ? `Projet : ${d.message}` : '', `E-mail : ${d.email}`]
       : [`Bonjour OTIUM, je suis ${d.nom}.`, `Ma question : ${d.message}`, `E-mail : ${d.email}`];
     return `https://wa.me/${WA}?text=${encodeURIComponent(lines.filter(Boolean).join('\n'))}`;
   };
