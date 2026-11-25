@@ -4,6 +4,7 @@ Une ligne par mise en ligne : date, ce qui a changé, qui l'a publié. Permet de
 
 | Date | Changement | Par |
 | --- | --- | --- |
+| 2026-11-25 | Mesure d'audience Cloudflare Web Analytics sans cookie (tous visiteurs, UE comprise ; production uniquement), page Confidentialité mise à jour (version 7da0abff) | Abdoullah (avec Claude) |
 | 2026-11-25 | Finitions : icônes Atelier Océan, mentions légales « Abdoullah Bajjou EI », vitesse mobile 77 → 98 (Lighthouse), plus de décalage au chargement, ordre des titres (version 79f592cf) | Abdoullah (avec Claude) |
 | 2026-11-25 | Design « Atelier Océan » : fond sable et bleu abysse, police Bricolage Grotesque, 13 illustrations au trait originales, cartes de services, méthode sur une orbite, nouvelle image de partage sans prix (ancienne og-otium.png retirée) (version 053fbaa3) | Abdoullah (avec Claude) |
 | 2026-11-24 | Version « studio » : plus aucun prix affiché, nouvelle promesse « sites conçus pour vendre », 5 pages expertises, page Studio, formulaire qualifiant (besoin, secteur, budget, échéance), redirections /a-propos → /studio et /exemples → / (version 628241bf) | Abdoullah (avec Claude) |
